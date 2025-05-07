@@ -1,0 +1,44 @@
+.results-grid-container {
+  width: 100%;
+  padding: 0 16px;
+  overflow-x: hidden;          /* <‑‑ quan trọng */
+  box-sizing: border-box;
+}
+
+.results-title {
+  font-size: 1.9rem;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.results-grid {
+  width: 100%;                 /* căng hết container nhưng không hơn */
+  display: grid;
+  gap: 20px;
+  grid-auto-rows: auto;
+  /* tự “nhét” bao nhiêu cột tùy khoảng rộng, min 220 px mỗi thẻ */
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+} 
+/* nút icon chung */
+.btn-icon {
+  background: #dbdbdb;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 14px;
+  color: #000000;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: background 0.2s;
+}
+
+/* ➊  Tăng cỡ mũi tên ở đây */
+.btn-icon i {
+  font-size: 2rem;   /* <-- to hơn (mặc định 1.4rem) */
+  line-height: 1;
+}
+
+.btn-icon:disabled {
+  background: #ffffff;
+  cursor: not-allowed;
+}

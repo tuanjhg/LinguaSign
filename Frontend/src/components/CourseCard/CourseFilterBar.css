@@ -1,0 +1,86 @@
+:root {
+  --header-height: 80px;          /* <‑‑ Đổi số này để thay đổi toàn cục */
+}
+.course-filter-bar {
+  position: sticky;                                   /* dính khi cuộn */
+  top: calc(var() + 3vh);              /* 3 % chiều cao màn hình */
+  /* Nếu muốn giới hạn không vượt quá 60 px: */
+  /* top: calc(var(--header-height) + clamp(20px, 3vh, 60px)); */
+
+  background: #fff;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+  flex-wrap: wrap;
+  gap: 23px;
+}
+
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.filter-icon {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: #222;
+  cursor: pointer;
+  margin-right: 8px;
+}
+
+.filter-btn {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  color: #222;
+  cursor: pointer;
+  padding: 4px 10px;
+  border-radius: 6px;
+  transition: background 0.2s, color 0.2s;
+}
+.filter-btn:hover, .filter-btn.active {
+  background: #e0e0e0;
+  color: #000000;
+}
+
+.search-group {
+  display: flex;
+  align-items: center;
+  background: #e0e0e0;
+  border-radius: 20px;
+  margin-right: 200px;
+  padding: 2px 8px;
+  transition: width 0.6s cubic-bezier(0.4,0,0.2,1);
+}
+
+.search-group .search-input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 1rem;
+  padding: 8px 4px;
+  width: 0;
+  min-width: 0;
+  opacity: 0;
+  transition: width 0.6s cubic-bezier(0.4,0,0.2,1), opacity 0.3s, padding 0.3s;
+}
+
+.search-group.active .search-input {
+  width: 180px;
+  opacity: 1;
+  padding: 8px 4px;
+}
+
+.search-btn {
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  color: #222;
+  cursor: pointer;
+  margin-left: 4px;
+} 

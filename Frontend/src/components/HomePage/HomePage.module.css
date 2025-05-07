@@ -1,0 +1,73 @@
+.homePage {
+  width: 100%;
+  height: calc(100vh - 80px);
+  background-image: url('../../assets/ImageHomPage.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+  box-sizing: border-box;
+  position: relative;
+  left: 0;
+  max-width: 100%;
+}
+
+.homePageWrapper {
+  margin-top: 80px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+.sign-language-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fdfcfb;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.sign-language-text {
+  max-width: 50%;
+}
+
+.sign-language-text h1 {
+  font-size: 2.5rem;
+  color: #1d1d1f;
+  margin-bottom: 20px;
+}
+
+.sign-language-text p {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 24px;
+}
+
+.get-started-btn {
+  padding: 12px 24px;
+  background-color: #ff6b35;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.get-started-btn:hover {
+  background-color: #e75a24;
+}
+
+.sign-language-image img {
+  max-width: 300px;
+  height: auto;
+  border-radius: 8px;
+}
