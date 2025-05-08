@@ -1,0 +1,74 @@
+/* ---------- RESET ---------- */
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+/* ---------- BIẾN ---------- */
+:root {
+  --header-height: 80px; /* sửa ở 1 chỗ nếu header đổi cao thấp */
+}
+
+/* ---------- KHUNG 3 PHẦN ---------- */
+.Page {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== HEADER ===== */
+.Page__header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height);
+  z-index: 3000;           /* che phủ mọi thứ bên dưới */
+}
+
+/* ===== CONTENT ===== */
+.Page__content {
+  flex: 1 0 auto;
+  padding-top: var(--header-height); /* tránh bị header che */
+  padding-bottom: 30px;              /* luôn hở 30 px tới footer */
+}
+
+/* ----- Filter Bar (bên phải, cách header 30 px) ----- */
+.course-filter-bar {
+  margin-top: 60px;
+  margin-right: 90px;
+  margin-left: auto;      /* đẩy sang phải */
+  width: fit-content;
+  position: relative;     /* cuộn theo trang */
+  z-index: 100;           /* dưới header */
+}
+
+/* ----- ResultsGrid wrapper: hở 30 px về footer (dự phòng) ----- */
+.ResultsWrapper {
+  margin-bottom: 30px;
+}
+
+/* ===== FOOTER ===== */
+.Page__footer {
+  flex-shrink: 0;          /* luôn ở đáy trang */
+  width: 100%;
+}
+
+/* ---------- THIẾT KẾ SẴN CÓ (giữ nguyên) ---------- */
+.section {
+  margin: 40px 20px;
+}
+.section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+}
+
+/* (các rule khác cho CourseSlider, ResultsGrid, button, v.v. vẫn giữ nguyên file cũ) */
+
+.btn-icon:focus, .btn-icon:active,
+.slider-arrow:focus, .slider-arrow:active {
+  outline: none !important;
+  box-shadow: none !important;
+}

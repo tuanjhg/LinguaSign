@@ -1,0 +1,49 @@
+/* Modern card style for ResultsGrid and CourseSlider */
+.modern-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  min-width: 220px;
+  max-width: 260px;
+  width: 100%;
+  margin: 0 auto;
+  transition: box-shadow .2s, transform .2s;
+  cursor: pointer;
+  overflow: hidden;
+  transition: box-shadow 0.2s, transform 0.22s cubic-bezier(0.4,0,0.2,1);
+}
+.modern-card:hover {
+  box-shadow: 0 8px 32px rgba(0,0,0,0.13);
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-card-image {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  border-radius: 18px 18px 0 0;
+  margin-bottom: 0;
+  display: block;
+  transition: transform .2s;
+}
+.modern-card-content {
+  padding: 14px 16px 10px 16px;
+  width: 100%;
+}
+.modern-card-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 2px;
+  line-height: 1.2;
+  text-align: left;
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+}
+
+/* Remove old styles for overlap-group and text-wrapper */
+.overlap-group, .text-wrapper, .image {
+  display: none !important;
+}

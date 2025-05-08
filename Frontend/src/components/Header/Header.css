@@ -1,0 +1,91 @@
+
+
+.header,
+.header * {
+  box-sizing: border-box;
+}
+
+/*  Đặt chiều rộng cố định cho header  */
+.header {
+  position: relative;
+  width: 69.875rem;               /* cố định “độ dài” (≈ 1118 px)  */
+  height: var(--header-height);   /* dùng biến header-height       */
+  margin: 0 auto;    /* căn giữa khi màn hình rộng hơn */
+}
+
+/*  Cho phép co lại trên thiết bị nhỏ hơn  */
+@media (max-width: 69.875rem) {
+  .header {
+    width: 100%;
+  }
+}
+
+.genericAvatarInstance {
+  width: 2.8125rem !important;
+  height: 2.8125rem !important;
+  position: absolute !important;
+  left: 66.375rem !important;
+  top: 0rem !important;
+  flex-shrink: unset !important;
+}
+.nguyNDNg {
+  color: #000000;
+  text-align: left;
+  font-family: var(
+    --single-line-body-base-font-family,
+    "Inter-Regular",
+    sans-serif
+  );
+  font-size: var(--single-line-body-base-font-size, 1rem);
+  line-height: var(--single-line-body-base-line-height, 100%);
+  font-weight: var(--single-line-body-base-font-weight, 400);
+  position: absolute;
+  left: 64.5625rem;
+  top: 3.4375rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.header2 {
+  width: 69.875rem;
+  height: 2.3125rem;
+  position: static;
+}
+.navigationPillListInstance {
+  justify-content: flex-end !important;
+  width: 62.79375rem !important;
+  height: 2.3125rem !important;
+  position: absolute !important;
+  left: 0rem !important;
+  top: 1.125rem !important;
+}
+.navigationPillInstance {
+  width: 6.5175rem !important;
+  position: absolute !important;
+  left: 63.3575rem !important;
+  top: 1.125rem !important;
+  background: unset !important;
+}
+.notificationsInstance {
+  width: 2.193125rem !important;
+  height: 1.8125rem !important;
+  position: absolute !important;
+  left: 41.9875rem !important;
+  top: 1.3125rem !important;
+}
+.frame4 {
+  width: 1.4375rem;
+  height: 1.5625rem;
+  position: absolute;
+  left: 42.25rem;
+  top: 1.4375rem;
+  overflow: hidden;
+}
+.frame5 {
+  width: 1.3125rem;
+  height: 1.6875rem;
+  position: absolute;
+  left: 42.375rem;
+  top: 1.3125rem;
+  overflow: hidden;
+}

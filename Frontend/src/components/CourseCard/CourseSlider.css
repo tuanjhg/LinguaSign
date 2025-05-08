@@ -1,0 +1,91 @@
+/* =========================================================
+   COURSE SLIDER – full‑bleed + progress bar
+   ========================================================= */
+
+/* ---------- WRAPPER ---------- */
+.course-slider-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+  right: 20px;
+  margin-left: 0;                               /* bám lề trái */
+  margin-right: calc(-1 * var(--bs-gutter-x, 1.5rem));
+  width: 100%;                                  /* KHÔNG vượt viewport */
+  overflow: hidden;
+}
+
+/* ---------- VIEWPORT ---------- */
+.course-slider-viewport {
+  display: flex;
+  gap: 32px;
+  width: 100%;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+
+  scroll-padding-inline: 15px;                  /* tránh arrow che */
+  
+  /* Hide scrollbar */
+  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+}
+.course-slider-viewport::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari and Opera */
+}
+
+/* ---------- ITEM ---------- */
+.course-slider-item {
+  flex: 0 0 auto;
+  width: min(25%, 380px);
+  scroll-snap-align: start;
+  margin-bottom: 16px;
+}
+.course-slider-item:first-child { margin-left: 15px; }
+.course-slider-item:last-child  { margin-right: 15px; }
+.course-slider-item .CourseCard { width: 100%; }
+
+/* ---------- ARROW BUTTON ---------- */
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  background: #dbdbdb;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 14px;
+  color: #000;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: background .2s;
+}
+.slider-arrow:disabled { background: #fff; cursor: not-allowed; }
+.slider-arrow.left  { left: 0; }
+.slider-arrow.right { right: 0; }
+
+/* ---------- PROGRESS LINE ---------- */
+.slider-progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;                 /* sát đáy wrapper */
+  height: 4px;
+  background: #e0e0e0;
+  overflow: hidden;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 700px) {
+  .course-slider-viewport { gap: 24px; }
+  .course-slider-item    { width: min(33.333%, 380px); }
+}
+@media (max-width: 768px) {
+  .course-slider-viewport { gap: 16px; }
+  .course-slider-item     { width: 50%; }
+}
+@media (max-width: 480px) {
+  .course-slider-viewport { gap: 8px; }
+  .course-slider-item     { width: 100%; }
+}
