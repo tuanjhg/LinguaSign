@@ -1,0 +1,316 @@
+.notiContainer {
+  position: absolute;
+  top: 40px; /* Adjust to position directly below the bell icon */
+  right: 0;
+  width: 300px;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background: #f5f5f5;
+  border-bottom: 1px solid #ddd;
+}
+
+.header span {
+  font-weight: bold;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.body {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.notification {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.notification:last-child {
+  border-bottom: none;
+}
+
+.icon {
+  margin-right: 10px;
+}
+
+.content h4 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.content p {
+  margin: 5px 0;
+  font-size: 12px;
+  color: #555;
+}
+
+.markAsRead {
+  background: #333;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.markAsRead:hover {
+  background: #555;
+}
+
+.empty {
+  text-align: center;
+  padding: 20px;
+  color: #888;
+}
+
+.group26,
+.group26 * {
+  box-sizing: border-box;
+}
+.group26 {
+  position: relative;
+}
+.group25 {
+  width: 22rem;
+  height: 32.125rem;
+  position: static;
+}
+.group27 {
+  width: 22rem;
+  height: 32.125rem;
+  position: static;
+}
+.rectangle56 {
+  background: #ffffff;
+  border-radius: 0.625rem;
+  border-style: solid;
+  border-color: #140f0f;
+  border-width: 0.0625rem;
+  width: 22rem;
+  height: 32.125rem;
+  position: absolute;
+  left: 0rem;
+  top: 0rem;
+}
+.group28,
+.group29,
+.group30 {
+  width: 20.375rem;
+  height: 7.5625rem;
+  position: static;
+}
+.notificationsInstance,
+.notificationsInstance2,
+.notificationsInstance3 {
+  width: 1.8125rem !important;
+  height: 1.8125rem !important;
+  position: absolute !important;
+  left: 19.375rem !important;
+  overflow: hidden !important;
+}
+.notificationsInstance {
+  top: 1.6875rem !important;
+}
+.notificationsInstance2 {
+  top: 9.75rem !important;
+}
+.notificationsInstance3 {
+  top: 17.8125rem !important;
+}
+.notificationInstance,
+.notificationInstance2,
+.notificationInstance3 {
+  width: 20.375rem !important;
+  height: 6.6875rem !important;
+  position: absolute !important;
+  left: 0.8125rem !important;
+}
+.notificationInstance {
+  top: 2.5625rem !important;
+}
+.notificationInstance2 {
+  top: 10.625rem !important;
+}
+.notificationInstance3 {
+  top: 18.6875rem !important;
+}
+.ellipse3,
+.ellipse32 {
+  width: 0.625rem;
+  height: 0.625rem;
+  position: absolute;
+  left: 1.0625rem;
+  overflow: visible;
+}
+.ellipse3 {
+  top: 2.8125rem;
+}
+.ellipse32 {
+  top: 10.875rem;
+}
+.xInstance {
+  width: 1.25rem !important;
+  height: 1.25rem !important;
+  position: absolute !important;
+  left: 20.4375rem !important;
+  top: 0.4375rem !important;
+  flex-shrink: unset !important;
+}
+
+.notiCard {
+  background: #fff;
+  border: 1px solid #bbb;
+  border-radius: 10px;
+  margin: 16px 8px;
+  padding: 12px 16px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow: none;
+}
+
+.notiCardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.unreadDot {
+  width: 8px;
+  height: 8px;
+  background: #1976d2;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 4px;
+}
+
+.notiTitle {
+  font-weight: bold;
+  font-size: 16px;
+  margin-left: 4px;
+}
+
+.notiCloseBtn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #222;
+  cursor: pointer;
+  margin-left: 8px;
+  align-self: flex-start;
+  position: relative;
+  top: -20px;
+}
+
+.notiBody {
+  font-size: 14px;
+  color: #222;
+  margin-bottom: 8px;
+  margin-left: 28px;
+}
+
+.markAsRead {
+  background: #333;
+  color: white;
+  border: none;
+  padding: 7px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+  margin-left: 28px;
+}
+
+.markAsRead:hover {
+  background: #555;
+}
+
+.notiDetailCard {
+  background: #fff;
+  border: 1px solid #222;
+  border-radius: 16px;
+  width: 100%;
+  min-height: 350px;
+  max-height: 1000px;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  box-shadow: none;
+  position: relative;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.notiDetailHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  padding: 24px 24px 0 24px;
+}
+
+.notiBackBtn {
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: #222;
+  cursor: pointer;
+  margin-right: 8px;
+  padding: 0;
+}
+
+.notiDetailTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-align: center;
+  margin: 10px 0 8px 0;
+  width: 100%;
+  letter-spacing: 0.2px;
+  line-height: 1.2;
+}
+
+.notiDetailBody {
+  font-size: 1.1rem;
+  color: #222;
+  text-align: center;
+  margin-top: 8px;
+  width: 100%;
+  word-break: break-word;
+  max-height: 220px;
+  overflow-y: auto;
+  padding-bottom: 8px;
+}
+
+.notiCloseBtn {
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: #222;
+  cursor: pointer;
+  margin-left: 8px;
+  align-self: flex-start;
+  position: relative;
+  
+}
