@@ -31,21 +31,24 @@
 }
 
 .navButton {
-  background: none;
+  background-color: transparent !important;
   border: none;
   font-size: 1rem;
   cursor: pointer;
   padding: 0.5rem 1rem;
   border-radius: 8px;
   transition: background-color 0.3s;
+  color: #333 !important;
+  font-weight: 500;
 }
 
 .navButton:hover {
-  background-color: #f0f0f0;
+  background-color: #f0f0f0 !important;
 }
 
 .navButton.active {
-  background-color: #e0e0e0;
+  background-color: #e0e0e0 !important;
+  font-weight: 600;
 }
 
 .userSection {
@@ -67,8 +70,14 @@
   min-height: 48px;
   height: 48px;
   width: 60px;
-  transition: width 0.3s cubic-bezier(0.4,0,0.2,1);
+  transition: width 0.3s cubic-bezier(0.4,0,0.2,1), background-color 0.2s;
   margin-right: 10px;
+  cursor: pointer;
+  position: relative;
+}
+
+.searchGroup:hover {
+  background-color: #d0d0d0;
 }
 
 .searchGroup.active {
@@ -80,17 +89,29 @@
   background: transparent;
   outline: none;
   font-size: 1rem;
-  padding: 8px 4px;
+  padding: 0;
   width: 0;
   min-width: 0;
   opacity: 0;
+  pointer-events: none; /* Vô hiệu hóa tương tác khi không active */
+  position: absolute; /* Đảm bảo không chiếm không gian khi không active */
+  left: 0;
+  color: #333; /* Màu chữ đen */
   transition: width 0.3s cubic-bezier(0.4,0,0.2,1), opacity 0.3s, padding 0.3s;
+}
+
+.searchInput::placeholder {
+  color: #777;
+  opacity: 0.8;
+  text-align: left; /* Căn trái để sát với con trỏ */
 }
 
 .searchGroup.active .searchInput {
   width: 180px;
   opacity: 1;
-  padding: 8px 4px;
+  padding: 8px 8px 8px 12px; /* Padding vừa phải để text sát với con trỏ */
+  pointer-events: auto; /* Cho phép tương tác khi active */
+  position: relative; /* Khôi phục vị trí bình thường */
 }
 
 .searchBtn {
@@ -120,6 +141,13 @@
   gap: 0.5rem;
 }
 
+.user span {
+  color: #333;
+  font-weight: 500;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
 .avatar {
   width: 32px;
   height: 32px;
@@ -128,4 +156,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.avatar svg {
+  color: #333;
+  width: 20px;
+  height: 20px;
 }
