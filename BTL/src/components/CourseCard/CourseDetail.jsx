@@ -86,7 +86,7 @@ const CourseDetail = () => {
     <div className="dictionary-container">
       {/* Header */}
       <header className="dictionary-header">
-        <button onClick={() => navigate(-1)} className="back-button">
+        <button onClick={() => navigate("/course")} className="back-button">
           &larr; Back
         </button>
         <h1>Sign Language Dictionary</h1>
