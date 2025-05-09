@@ -17,12 +17,13 @@ export default function ScrollToTopButton() {
   return (
     <button
       onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-      className="scroll-to-top"
       style={{
         position: 'fixed',
         bottom: 24,
         right: 24,
         zIndex: 9999,
+        background: '#e0e0e0',
+        color: '#111',
         border: 'none',
         borderRadius: 16,
         boxShadow: '0 2px 8px rgba(0,0,0,0.10)',
@@ -50,4 +51,4 @@ export default function ScrollToTopButton() {
       `}</style>
     </button>
   );
-}
+} 

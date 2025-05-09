@@ -4,9 +4,6 @@ body,
 #root {
   height: 100%;
   margin: 0;
-
-  background-color: #fff;
-
 }
 
 /* ---------- BIẾN ---------- */
@@ -70,10 +67,8 @@ body,
 
 /* (các rule khác cho CourseSlider, ResultsGrid, button, v.v. vẫn giữ nguyên file cũ) */
 
-
 .btn-icon:focus, .btn-icon:active,
 .slider-arrow:focus, .slider-arrow:active {
   outline: none !important;
   box-shadow: none !important;
 }
-
