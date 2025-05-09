@@ -1,58 +1,27 @@
-
-import React, { useState, useRef, useEffect } from "react";
-
+import React, { useState, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./Header.module.css";
 import Sign from '../../assets/Logo.png';
 import { Noti } from "../Noti/Noti";
-
-import { UserMenu } from "../UserMenu/UserMenu";
-
 import { FaSearch } from 'react-icons/fa';
 
 export const Header = ({ UserName }) => {
   const [showNoti, setShowNoti] = useState(false);
-
-  const [showUserMenu, setShowUserMenu] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
-  const userMenuRef = useRef(null);
-
 
   // Search state
   const [searchActive, setSearchActive] = useState(false);
   const [searchValue, setSearchValue] = useState('');
   const inputRef = useRef(null);
 
-  const searchGroupRef = useRef(null);
-
-  // Đóng UserMenu khi click ra ngoài
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (userMenuRef.current && !userMenuRef.current.contains(event.target)) {
-        setShowUserMenu(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
-
-
   const handleSearchClick = () => {
     setSearchActive(true);
     setTimeout(() => inputRef.current && inputRef.current.focus(), 100);
   };
 
-
-  const handleBlur = (e) => {
-    // Kiểm tra xem click có nằm ngoài thanh tìm kiếm không
-    if (!searchValue && !searchGroupRef.current?.contains(e.relatedTarget)) {
-      setSearchActive(false);
-    }
-
+  const handleBlur = () => {
+    if (!searchValue) setSearchActive(false);
   };
 
   const notifications = [
@@ -87,13 +56,7 @@ export const Header = ({ UserName }) => {
         ))}
       </div>
       <div className={styles.userSection}>
-
-        <div
-          className={styles.searchGroup + (searchActive ? ' ' + styles.active : '')}
-          ref={searchGroupRef}
-          onClick={handleSearchClick}
-        >
-
+        <div className={styles.searchGroup + (searchActive ? ' ' + styles.active : '')}>
           <input
             className={styles.searchInput}
             type="text"
@@ -103,9 +66,7 @@ export const Header = ({ UserName }) => {
             onChange={e => setSearchValue(e.target.value)}
             onBlur={handleBlur}
           />
-
-          <button className={styles.searchBtn} tabIndex={-1}>
-
+          <button className={styles.searchBtn} onClick={handleSearchClick} tabIndex={-1}>
             <FaSearch />
           </button>
         </div>
@@ -131,14 +92,8 @@ export const Header = ({ UserName }) => {
             />
           )}
         </div>
-
-        <div className={`${styles.user} user`} ref={userMenuRef} style={{ position: "relative" }}>
-          <div
-            className={`${styles.avatar} avatar`}
-            onClick={() => setShowUserMenu(prev => !prev)}
-            style={{ cursor: "pointer" }}
-          >
-
+        <div className={styles.user}>
+          <div className={styles.avatar}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -150,11 +105,6 @@ export const Header = ({ UserName }) => {
             </svg>
           </div>
           <span>{UserName}</span>
-
-          {showUserMenu && (
-            <UserMenu onClose={() => setShowUserMenu(false)} />
-          )}
-
         </div>
       </div>
     </div>

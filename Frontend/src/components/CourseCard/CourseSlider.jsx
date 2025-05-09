@@ -5,18 +5,12 @@ import React, {
   useLayoutEffect,
   useCallback,
 } from 'react';
-
-import { useNavigate } from 'react-router-dom';
-
 import './CourseSlider.css';
 
 /**
  * Slider dùng scroll‑snap + progress‑bar
  */
-
 export const CourseSlider = ({ courses = [], title = 'Recent courses', onSeeAll }) => {
-  const navigate = useNavigate();
-
   const wrapperRef  = useRef(null);  // khung ngoài – gán width = footer
   const viewportRef = useRef(null);  // phần cuộn
   const [canPrev, setCanPrev]   = useState(false);
@@ -47,9 +41,7 @@ export const CourseSlider = ({ courses = [], title = 'Recent courses', onSeeAll 
       const el = viewportRef.current;
       if (!el) return;
 
-
       setCanPrev(Math.round(el.scrollLeft) > 0);
-
       setCanNext(el.scrollLeft + el.clientWidth < el.scrollWidth - 1);
 
       const ratio =
@@ -81,7 +73,6 @@ export const CourseSlider = ({ courses = [], title = 'Recent courses', onSeeAll 
 
   /* ---------- 4.  Render ---------- */
   return (
-
     <div
       className="course-slider-remake-wrapper"
       ref={wrapperRef}
@@ -93,23 +84,24 @@ export const CourseSlider = ({ courses = [], title = 'Recent courses', onSeeAll 
       }}
     >
       <div style={{ padding: '0 40px 9px 18px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <span style={{
+        <span style={{ 
           fontSize: '2.3rem',
           fontWeight: 900,
           color: 'rgb(0, 0, 0)',
-          margin: 0,
-          letterSpacing: 1,
+          margin: 0, 
+          letterSpacing: 1, 
           lineHeight: 1,
           textShadow: '0 2px 8px rgba(26,35,126,0.08)',
           fontFamily: title === 'Từ vựng mới'
-            ? '\"Times New Roman\", Times, \"DejaVu Serif\", serif'
+            ? 'Times New Roman, Times, DejaVu Serif, serif'
             : 'Roboto, Helvetica, Arial, sans-serif'
         }}>{title}</span>
         <button
           onClick={onSeeAll}
-          className="see-all-btn"
           style={{
+            background: 'none',
             border: 'none',
+            color: '#22313a',
             fontWeight: 600,
             fontSize: '1.25rem',
             cursor: 'pointer',
@@ -168,7 +160,6 @@ export const CourseSlider = ({ courses = [], title = 'Recent courses', onSeeAll 
           <div
             className="course-slider-remake-item"
             key={idx}
-            onClick={() => navigate(`/video/${course.videoId || idx + 1}`)}
             style={{
               background: '#fff',
               borderRadius: 18,
@@ -263,7 +254,6 @@ export const CourseSlider = ({ courses = [], title = 'Recent courses', onSeeAll 
           .course-slider-remake-item { min-width: 92vw !important; max-width: 98vw !important; width: 98vw !important; }
         }
       `}</style>
-
     </div>
   );
 };

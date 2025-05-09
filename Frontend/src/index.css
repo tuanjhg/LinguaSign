@@ -43,23 +43,15 @@ button {
   font-weight: 500;
   font-family: inherit;
   background-color: #1a1a1a;
-
-  color: rgba(255, 255, 255, 0.87);
   cursor: pointer;
-  transition: border-color 0.25s, background-color 0.3s, color 0.3s;
-
+  transition: border-color 0.25s;
 }
 button:hover {
   border-color: #646cff;
 }
 button:focus,
 button:focus-visible {
-
-  /* Loại bỏ outline mặc định */
-  outline: none;
-  /* Thay thế bằng hiệu ứng tinh tế hơn */
-  box-shadow: 0 0 0 2px rgba(100, 108, 255, 0.2);
-
+  outline: 4px auto -webkit-focus-ring-color;
 }
 
 @media (prefers-color-scheme: light) {
