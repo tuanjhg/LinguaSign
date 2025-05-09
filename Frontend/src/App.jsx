@@ -9,16 +9,18 @@ import {
 import { Header } from "./components/Header/Header";
 import { Footer } from "./components/Footer/Footer";
 import CourseFilterBar from "./components/CourseCard/CourseFilterBar";
-import { CourseSlider } from "./components/CourseCard/CourseSlider";
 import ResultsGrid from "./components/CourseCard/ResultsGrid";
 import HomePage from "./components/HomePage/HomePage";
 import Course from "./components/Course/Course";
 import ScrollToTopButton from './components/ScrollToTopButton';
 import Translate from './pages/Translate/Translate';
 import { courseTopics } from './data/courseTopics';
+import { ProfilePage } from './pages/ProfilePage';
+import { SettingsPage } from './pages/SettingsPage';
+import { VideoPage } from './pages/VideoPage';
+
 
 import "./App.css";
-import imageCourse from "./assets/sign_topic_2.png";
 import imageCourse1 from "./assets/course1.jpg";
 import imageCourse2 from "./assets/course2.jpg";
 import imageCourse3 from "./assets/course3.jpg";
@@ -122,6 +124,13 @@ function Layout() {
           />
           {/* Trang kết quả khi bấm Xem toàn bộ */}
           <Route path="/course/results" element={<CourseResultsPage />} />
+
+          {/* Trang Profile và Settings */}
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/settings" element={<SettingsPage />} />
+
+          {/* Trang Video */}
+          <Route path="/video/:videoId" element={<VideoPage />} />
         </Routes>
       </main>
 
@@ -144,7 +153,6 @@ export default function App() {
 // Component trang kết quả cho 'Xem toàn bộ'
 function CourseResultsPage() {
   const location = useLocation();
-  const navigate = window.history;
   const courses = location.state?.courses || [];
   const title = location.state?.title || 'Results';
   return (

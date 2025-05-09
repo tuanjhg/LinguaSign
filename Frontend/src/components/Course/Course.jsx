@@ -5,10 +5,30 @@ import { useNavigate } from 'react-router-dom';
 
 // Mock data mẫu (có thể xóa nếu truyền từ ngoài vào)
 const mockCourses = [
-  { title: 'Bài học: Ẩm thực', imageSrc: signTopic2 },
-  { title: 'Bài học: Câu cảm thán', imageSrc: signTopic2 },
-  { title: 'Bài học: Các quốc gia', imageSrc: signTopic2 },
-  { title: 'Bài học: Động vật', imageSrc: signTopic2 },
+  {
+    title: 'Bài học: Ẩm thực',
+    imageSrc: signTopic2,
+    videoSrc: 'https://samplelib.com/lib/preview/mp4/sample-5s.mp4',
+    videoId: '1'
+  },
+  {
+    title: 'Bài học: Câu cảm thán',
+    imageSrc: signTopic2,
+    videoSrc: 'https://samplelib.com/lib/preview/mp4/sample-10s.mp4',
+    videoId: '2'
+  },
+  {
+    title: 'Bài học: Các quốc gia',
+    imageSrc: signTopic2,
+    videoSrc: 'https://samplelib.com/lib/preview/mp4/sample-15s.mp4',
+    videoId: '3'
+  },
+  {
+    title: 'Bài học: Động vật',
+    imageSrc: signTopic2,
+    videoSrc: 'https://samplelib.com/lib/preview/mp4/sample-20s.mp4',
+    videoId: '4'
+  },
 ];
 
 export default function Course({ courses = mockCourses, title }) {
@@ -22,4 +42,4 @@ export default function Course({ courses = mockCourses, title }) {
       {/* Sau này có thể thêm TrendingColumn, filter, ... ở đây */}
     </div>
   );
-} 
+}

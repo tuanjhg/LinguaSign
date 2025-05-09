@@ -5,12 +5,14 @@ import React, {
   useLayoutEffect,
   useCallback,
 } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './CourseSlider.css';
 
 /**
  * Slider dùng scroll‑snap + progress‑bar
  */
 export const CourseSlider = ({ courses = [], title = 'Recent courses', onSeeAll }) => {
+   const navigate = useNavigate();
   const wrapperRef  = useRef(null);  // khung ngoài – gán width = footer
   const viewportRef = useRef(null);  // phần cuộn
   const [canPrev, setCanPrev]   = useState(false);
@@ -98,10 +100,9 @@ export const CourseSlider = ({ courses = [], title = 'Recent courses', onSeeAll 
         }}>{title}</span>
         <button
           onClick={onSeeAll}
+          className="see-all-btn"
           style={{
-            background: 'none',
             border: 'none',
-            color: '#22313a',
             fontWeight: 600,
             fontSize: '1.25rem',
             cursor: 'pointer',
@@ -160,6 +161,7 @@ export const CourseSlider = ({ courses = [], title = 'Recent courses', onSeeAll 
           <div
             className="course-slider-remake-item"
             key={idx}
+            onClick={() => navigate(`/video/${course.videoId || idx + 1}`)}
             style={{
               background: '#fff',
               borderRadius: 18,
