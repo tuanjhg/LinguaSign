@@ -1,0 +1,113 @@
+/*
+ * ButtonOverrides.css
+ * File này chứa các CSS ghi đè cho tất cả các button trong ứng dụng
+ * để đảm bảo chúng hiển thị đúng trong cả dark mode và light mode
+ */
+
+/* Ghi đè các thuộc tính mặc định của button từ index.css */
+button {
+  /* Đảm bảo nút có màu nền trong suốt và màu chữ tối mặc định */
+  background-color: transparent !important;
+  color: #333 !important;
+  border: 1px solid transparent;
+}
+
+/* Loại bỏ outline mặc định khi focus và thay thế bằng hiệu ứng đẹp hơn */
+button:focus,
+button:focus-visible {
+  outline: none !important;
+  box-shadow: 0 0 0 2px rgba(100, 108, 255, 0.2) !important;
+}
+
+/* Loại bỏ hoàn toàn outline cho các nút đặc biệt */
+.searchBtn:focus,
+.notifications:focus,
+.navButton:focus,
+.filter-btn:focus,
+.slider-arrow:focus,
+.see-all-btn:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Các nút đặc biệt vẫn giữ màu sắc riêng của chúng */
+.getStartedOnImage,
+.getStartedBtn {
+  background-color: #ff7f32 !important;
+  color: #fff !important;
+}
+
+.getStartedOnImage:hover,
+.getStartedBtn:hover {
+  background-color: #e86c1a !important;
+}
+
+/* Nút trong CourseFilterBar */
+.filter-btn {
+  background: none !important;
+  color: #222 !important;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  background: #e0e0e0 !important;
+  color: #000000 !important;
+}
+
+/* Nút trong CourseSlider */
+.slider-arrow {
+  background: none !important;
+  color: #222 !important;
+}
+
+/* Nút "Xem toàn bộ" */
+.see-all-btn {
+  background: none !important;
+  color: #22313a !important;
+}
+
+/* Nút search trong Header */
+.searchBtn {
+  background: none !important;
+  color: #222 !important;
+}
+
+/* Nút notifications trong Header */
+.notifications {
+  background: none !important;
+  color: #222 !important;
+}
+
+/* Nút ScrollToTop */
+.scroll-to-top {
+  background: #e0e0e0 !important;
+  color: #111 !important;
+}
+
+/* Phần user trong Header */
+.user span {
+  color: #333 !important;
+  font-weight: 500 !important;
+}
+
+.avatar svg {
+  color: #333 !important;
+  fill: #333 !important;
+}
+
+/* Nút lưu thay đổi trong Profile và Settings */
+.saveButton {
+  background-color: #ff7f32 !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 4px !important;
+  padding: 10px 20px !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  transition: background-color 0.2s !important;
+}
+
+.saveButton:hover {
+  background-color: #e86c1a !important;
+}
