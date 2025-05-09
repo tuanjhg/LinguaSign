@@ -1,3 +1,4 @@
+
 import React, { useRef, useEffect, useState } from "react";
 import { Header } from "../Header/Header";
 import styles from "./HomePage.module.css";
@@ -187,6 +188,7 @@ const HomePage = () => {
               </div>
             ))}
           </div>
+
         </div>
       </div>
     </>
@@ -194,3 +196,4 @@ const HomePage = () => {
 };
 
 export default HomePage;
+

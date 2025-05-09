@@ -5,14 +5,18 @@ import React, {
   useLayoutEffect,
   useCallback,
 } from 'react';
+
 import { useNavigate } from 'react-router-dom';
+
 import './CourseSlider.css';
 
 /**
  * Slider dùng scroll‑snap + progress‑bar
  */
+
 export const CourseSlider = ({ courses = [], title = 'Recent courses', onSeeAll }) => {
   const navigate = useNavigate();
+
   const wrapperRef  = useRef(null);  // khung ngoài – gán width = footer
   const viewportRef = useRef(null);  // phần cuộn
   const [canPrev, setCanPrev]   = useState(false);
@@ -43,7 +47,9 @@ export const CourseSlider = ({ courses = [], title = 'Recent courses', onSeeAll 
       const el = viewportRef.current;
       if (!el) return;
 
+
       setCanPrev(Math.round(el.scrollLeft) > 0);
+
       setCanNext(el.scrollLeft + el.clientWidth < el.scrollWidth - 1);
 
       const ratio =
@@ -75,6 +81,7 @@ export const CourseSlider = ({ courses = [], title = 'Recent courses', onSeeAll 
 
   /* ---------- 4.  Render ---------- */
   return (
+
     <div
       className="course-slider-remake-wrapper"
       ref={wrapperRef}
@@ -256,6 +263,7 @@ export const CourseSlider = ({ courses = [], title = 'Recent courses', onSeeAll 
           .course-slider-remake-item { min-width: 92vw !important; max-width: 98vw !important; width: 98vw !important; }
         }
       `}</style>
+
     </div>
   );
 };

@@ -12,6 +12,7 @@ import CourseFilterBar from "./components/CourseCard/CourseFilterBar";
 import { CourseSlider } from "./components/CourseCard/CourseSlider";
 import ResultsGrid from "./components/CourseCard/ResultsGrid";
 import HomePage from "./components/HomePage/HomePage";
+
 import Course from "./components/Course/Course";
 import ScrollToTopButton from './components/ScrollToTopButton';
 import { ProfilePage } from './pages/ProfilePage';
@@ -100,6 +101,7 @@ const favoriteCourses = [
   { title: "Favorite 6", imageSrc: imageCourse9 },
 ];
 
+
 /* ---------------- LAYOUT ---------------- */
 function Layout() {
   const [selectedFilter, setSelectedFilter] = useState(null);
@@ -118,8 +120,10 @@ function Layout() {
 
       {/* ===== CONTENT ===== */}
       <main className="Page__content">
+
         {/* Filter bar chỉ hiện ở trang course */}
         {location.pathname === "/course" && (
+
           <CourseFilterBar onFilterSelect={setSelectedFilter} />
         )}
 
@@ -141,6 +145,7 @@ function Layout() {
               ) : (
                 <>
                   <section className="section">
+
                     <Course courses={recentCourses} title="Recent courses" />
                   </section>
                   <section className="section">
@@ -151,11 +156,13 @@ function Layout() {
                   </section>
                   <section className="section">
                     <Course courses={favoriteCourses} title="Favorites" />
+
                   </section>
                 </>
               )
             }
           />
+
           {/* Trang kết quả khi bấm Xem toàn bộ */}
           <Route path="/course/results" element={<CourseResultsPage />} />
 
@@ -165,6 +172,7 @@ function Layout() {
 
           {/* Trang Video */}
           <Route path="/video/:videoId" element={<VideoPage />} />
+
         </Routes>
       </main>
 
@@ -179,6 +187,7 @@ export default function App() {
   return (
     <Router>
       <Layout />
+
       <ScrollToTopButton />
     </Router>
   );
@@ -204,3 +213,4 @@ function CourseResultsPage() {
     </div>
   );
 }
+

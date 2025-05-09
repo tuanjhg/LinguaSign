@@ -31,13 +31,16 @@
 }
 
 .navButton {
+
   background-color: transparent !important;
+
   border: none;
   font-size: 1rem;
   cursor: pointer;
   padding: 0.5rem 1rem;
   border-radius: 8px;
   transition: background-color 0.3s;
+
   color: #333 !important;
   font-weight: 500;
 }
@@ -49,6 +52,7 @@
 .navButton.active {
   background-color: #e0e0e0 !important;
   font-weight: 600;
+
 }
 
 .userSection {
@@ -62,6 +66,7 @@
 .searchGroup {
   display: flex;
   align-items: center;
+
   justify-content: center;
   background: #e0e0e0;
   border-radius: 24px;
@@ -82,6 +87,7 @@
 
 .searchGroup.active {
   width: 220px;
+
 }
 
 .searchInput {
@@ -89,6 +95,7 @@
   background: transparent;
   outline: none;
   font-size: 1rem;
+
   padding: 0;
   width: 0;
   min-width: 0;
@@ -112,11 +119,13 @@
   padding: 8px 8px 8px 12px; /* Padding vừa phải để text sát với con trỏ */
   pointer-events: auto; /* Cho phép tương tác khi active */
   position: relative; /* Khôi phục vị trí bình thường */
+
 }
 
 .searchBtn {
   background: none;
   border: none;
+
   font-size: 1.2rem;
   color: #222;
   cursor: pointer;
@@ -124,6 +133,7 @@
   padding: 0;
   width: 48px;
   height: 48px;
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -148,6 +158,7 @@
   font-family: inherit;
 }
 
+
 .avatar {
   width: 32px;
   height: 32px;
@@ -163,3 +174,4 @@
   width: 20px;
   height: 20px;
 }
+

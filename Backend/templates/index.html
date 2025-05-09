@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Language to Text</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .video-container {
+            flex: 1;
+            min-width: 400px;
+        }
+        .info-container {
+            flex: 1;
+            min-width: 400px;
+        }
+        #video, #canvas {
+            width: 100%;
+            border: 3px solid #333;
+            border-radius: 8px;
+        }
+        .display-box {
+            border: 2px solid #333;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            min-height: 60px;
+        }
+        .suggestions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .suggestion-btn {
+            padding: 10px 15px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+        }
+        .action-btns {
+            display: flex;
+            gap: 10px;
+        }
+        .action-btn {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sign Language To Text Conversion</h1>
+
+    <div class="container">
+        <div class="video-container">
+            <video id="video" playsinline></video>
+            <canvas id="canvas" style="display: none;"></canvas>
+        </div>
+
+        <div class="info-container">
+            <h2>Character: <span id="symbol">-</span></h2>
+
+            <h3>Sentence:</h3>
+            <div class="display-box" id="sentence"></div>
+
+            <h3>Suggestions:</h3>
+            <div class="suggestions">
+                <button class="suggestion-btn" id="suggestion1"></button>
+                <button class="suggestion-btn" id="suggestion2"></button>
+                <button class="suggestion-btn" id="suggestion3"></button>
+                <button class="suggestion-btn" id="suggestion4"></button>
+            </div>
+
+            <div class="action-btns">
+                <button class="action-btn" id="speakBtn">Speak</button>
+                <button class="action-btn" id="clearBtn">Clear</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../static/app.js"></script>
+</body>
+</html>
