@@ -14,8 +14,13 @@ import ResultsGrid from "./components/CourseCard/ResultsGrid";
 import HomePage from "./components/HomePage/HomePage";
 import Course from "./components/Course/Course";
 import ScrollToTopButton from './components/ScrollToTopButton';
+import { ProfilePage } from './pages/ProfilePage';
+import { SettingsPage } from './pages/SettingsPage';
+import { VideoPage } from './pages/VideoPage';
 import Translate from './pages/Translate/Translate';
-import { courseTopics } from './data/courseTopics';
+
+// Import CSS ghi đè cho các button
+import './components/common/ButtonOverrides.css';
 
 import "./App.css";
 import imageCourse from "./assets/sign_topic_2.png";
@@ -31,13 +36,48 @@ import imageCourse9 from "./assets/course9.jpg";
 
 /* ---------------- MOCK DATA ---------------- */
 const recentCourses = [
-  { title: "Chủ đề: Ẩm thực", imageSrc: imageCourse1 },
-  { title: "Chủ đề: Câu cảm thán", imageSrc: imageCourse7 },
-  { title: "Bài học: Các quốc gia", imageSrc: imageCourse6 },
-  { title: "Bài học: Ẩm Thực", imageSrc: imageCourse3 },
-  { title: "Bài học: Động vật", imageSrc: imageCourse6 },
-  { title: "Bài học: Thể thao", imageSrc: imageCourse2 },
-  { title: "Bài học: Động vật", imageSrc: imageCourse8 },
+  {
+    title: "Chủ đề: Ẩm thực",
+    imageSrc: imageCourse1,
+    videoSrc: "https://samplelib.com/lib/preview/mp4/sample-5s.mp4",
+    videoId: "1"
+  },
+  {
+    title: "Chủ đề: Câu cảm thán",
+    imageSrc: imageCourse7,
+    videoSrc: "https://samplelib.com/lib/preview/mp4/sample-10s.mp4",
+    videoId: "2"
+  },
+  {
+    title: "Bài học: Các quốc gia",
+    imageSrc: imageCourse6,
+    videoSrc: "https://samplelib.com/lib/preview/mp4/sample-15s.mp4",
+    videoId: "3"
+  },
+  {
+    title: "Bài học: Ẩm Thực",
+    imageSrc: imageCourse3,
+    videoSrc: "https://samplelib.com/lib/preview/mp4/sample-20s.mp4",
+    videoId: "4"
+  },
+  {
+    title: "Bài học: Động vật",
+    imageSrc: imageCourse6,
+    videoSrc: "https://samplelib.com/lib/preview/mp4/sample-30s.mp4",
+    videoId: "5"
+  },
+  {
+    title: "Bài học: Thể thao",
+    imageSrc: imageCourse2,
+    videoSrc: "https://samplelib.com/lib/preview/mp4/sample-5s.mp4",
+    videoId: "6"
+  },
+  {
+    title: "Bài học: Động vật",
+    imageSrc: imageCourse8,
+    videoSrc: "https://samplelib.com/lib/preview/mp4/sample-10s.mp4",
+    videoId: "7"
+  },
 ];
 const yourCourses = [
   { title: "Bài học: Ẩm Thực", imageSrc: imageCourse4 },
@@ -79,9 +119,9 @@ function Layout() {
 
       {/* ===== CONTENT ===== */}
       <main className="Page__content">
-        {/* Filter bar chỉ hiện ngoài trang chủ và KHÔNG hiện ở /translate */}
-        {location.pathname !== "/" && location.pathname !== "/translate" && (
-          <CourseFilterBar topicsData={courseTopics} />
+        {/* Filter bar chỉ hiện ở trang course */}
+        {location.pathname === "/course" && (
+          <CourseFilterBar onFilterSelect={setSelectedFilter} />
         )}
 
         <Routes>
@@ -122,6 +162,13 @@ function Layout() {
           />
           {/* Trang kết quả khi bấm Xem toàn bộ */}
           <Route path="/course/results" element={<CourseResultsPage />} />
+
+          {/* Trang Profile và Settings */}
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/settings" element={<SettingsPage />} />
+
+          {/* Trang Video */}
+          <Route path="/video/:videoId" element={<VideoPage />} />
         </Routes>
       </main>
 
