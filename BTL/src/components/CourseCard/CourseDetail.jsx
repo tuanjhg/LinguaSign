@@ -86,11 +86,17 @@ const CourseDetail = () => {
     <div className="dictionary-container">
       {/* Header */}
       <header className="dictionary-header">
-        <button onClick={() => navigate("/course")} className="back-button">
-          &larr; Back
-        </button>
-        <h1>Sign Language Dictionary</h1>
-      </header>
+  <button onClick={() => navigate("/course")} className="back-button">
+    &larr; Back
+  </button>
+  <h1>Sign Language Dictionary</h1>
+  <button
+    onClick={() => navigate(`/course/${courseId}/quiz`)}
+    className="quiz-button"
+  >
+    Bắt đầu làm Quiz
+  </button>
+</header>
 
       {/* Main Content */}
       <div className="dictionary-layout">
@@ -142,16 +148,7 @@ const CourseDetail = () => {
               <div className="entry-detail">
                 <h2>{currentEntry.title}</h2>
                 {currentEntry.description && <p>{currentEntry.description}</p>}
-                {currentEntry.link && (
-                  <a
-                    href={currentEntry.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="source-link"
-                  >
-                    View source
-                  </a>
-                )}
+                
               </div>
             </>
           )}

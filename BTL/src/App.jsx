@@ -13,6 +13,7 @@ import { CourseSlider } from "./components/CourseCard/CourseSlider";
 import ResultsGrid from "./components/CourseCard/ResultsGrid";
 import HomePage from "./components/HomePage/HomePage";
 import CourseDetail from './components/CourseCard/CourseDetail';
+import Quiz from "./components/CourseCard/Quiz";
 
 
 import "./App.css";
@@ -97,6 +98,7 @@ function Layout() {
           />
           <Route path="/course/:courseId" element={<CourseDetail />} />
           <Route path="/course/:courseId/:entryTitle?" element={<CourseDetail />} />
+          <Route path="/course/:courseId/quiz" element={<Quiz />} />
         </Routes>
       </main>
 
