@@ -1,3 +1,10 @@
 cvzone
-mediapipe
 pyenchant
+numpy==1.26.4 
+ml_dtypes==0.5.0 
+jax==0.6.0 jaxlib==0.6.0 
+mediapipe==0.10.21 
+tensorflow==2.18.0 
+tensorflowjs==4.21.0 
+tensorflow-decision-forests==1.8.1 
+setuptools==69.5.1

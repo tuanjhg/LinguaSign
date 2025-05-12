@@ -1,14 +1,16 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import styles from "./UserMenu.module.css";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../Auth/AuthContext';
+import styles from './UserMenu.module.css';
 import { FaUserEdit } from 'react-icons/fa';
 import { FiSettings } from 'react-icons/fi';
 import { FiLogOut } from 'react-icons/fi';
-import { LogoutConfirmModal } from "../Modal/LogoutConfirmModal";
+import { LogoutConfirmModal } from '../Modal/LogoutConfirmModal';
 
-export const UserMenu = ({ onClose }) => {
+export const UserMenu = ({ onClose, onLogout }) => {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const navigate = useNavigate();
+  const { logout } = useAuth();
 
   const handleEdit = () => {
     navigate('/profile');
@@ -25,12 +27,15 @@ export const UserMenu = ({ onClose }) => {
   };
 
   const confirmLogout = () => {
-    console.log("Đăng xuất thành công");
-    // Thực hiện đăng xuất ở đây (xóa token, reset state, etc.)
-    setShowLogoutModal(false);
-    onClose();
-    // Chuyển hướng về trang đăng nhập hoặc trang chủ
-    navigate('/');
+    try {
+      logout(); 
+      setShowLogoutModal(false);
+      onClose();
+      navigate('/'); 
+      onLogout(); 
+    } catch (error) {
+      console.error('Error during logout:', error);
+    }
   };
 
   return (

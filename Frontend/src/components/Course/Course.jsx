@@ -3,7 +3,6 @@ import CourseSlider from '../CourseCard/CourseSlider';
 import signTopic2 from '../../assets/sign_topic_2.png';
 import { useNavigate } from 'react-router-dom';
 
-// Mock data mẫu (có thể xóa nếu truyền từ ngoài vào)
 const mockCourses = [
   {
     title: 'Bài học: Ẩm thực',

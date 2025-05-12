@@ -10,7 +10,7 @@ const sampleVideos = [
     id: "1",
     title: "Bài học: Chào hỏi trong ngôn ngữ ký hiệu",
     description: "Học cách chào hỏi và giới thiệu bản thân bằng ngôn ngữ ký hiệu. Bài học này sẽ giúp bạn làm quen với các cử chỉ cơ bản.",
-    videoSrc: "https://samplelib.com/lib/preview/mp4/sample-5s.mp4",
+    videoSrc: "https://www.tudienngonngukyhieu.com/tu-ngu/an-chay-6878",
     thumbnailSrc: "https://i.ytimg.com/vi/EngW7tLk6R8/maxresdefault.jpg",
     duration: 65,
     views: 1245,

@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   BrowserRouter as Router,
   Routes,
   Route,
-  useLocation,
+  Navigate,
+  useLocation
 } from "react-router-dom";
 
 import { Header } from "./components/Header/Header";
@@ -14,11 +15,15 @@ import HomePage from "./components/HomePage/HomePage";
 import Course from "./components/Course/Course";
 import ScrollToTopButton from './components/ScrollToTopButton';
 import Translate from './pages/Translate/Translate';
-import { courseTopics } from './data/courseTopics';
 import { ProfilePage } from './pages/ProfilePage';
 import { SettingsPage } from './pages/SettingsPage';
 import { VideoPage } from './pages/VideoPage';
+import { Login } from './components/Auth/Login';
+import { Signup } from './components/Auth/Signup';
+import { AuthProvider, useAuth } from './components/Auth/AuthContext';
+import { PrivateRoute } from './components/Auth/PrivateRoute';
 
+import { courseTopics } from './data/courseTopics';
 
 import "./App.css";
 import imageCourse1 from "./assets/course1.jpg";
@@ -36,11 +41,11 @@ const recentCourses = [
   { title: "Chủ đề: Ẩm thực", imageSrc: imageCourse1 },
   { title: "Chủ đề: Câu cảm thán", imageSrc: imageCourse7 },
   { title: "Bài học: Các quốc gia", imageSrc: imageCourse6 },
-  { title: "Bài học: Ẩm Thực", imageSrc: imageCourse3 },
-  { title: "Bài học: Động vật", imageSrc: imageCourse6 },
-  { title: "Bài học: Thể thao", imageSrc: imageCourse2 },
-  { title: "Bài học: Động vật", imageSrc: imageCourse8 },
+  { id: 1, title: "Bài học: Ẩm thực", courseId: "course1", imageSrc: imageCourse1 },
+  { id: 2, title: "Bài học: Các quốc gia", courseId: "course2", imageSrc: imageCourse7 },
+  { id: 3, title: "Bài học: Con vật", courseId: "course3", imageSrc: imageCourse6 },
 ];
+
 const yourCourses = [
   { title: "Bài học: Ẩm Thực", imageSrc: imageCourse4 },
   { title: "Bài học: Ẩm Thực", imageSrc: imageCourse5 },
@@ -49,6 +54,7 @@ const yourCourses = [
   { title: "Bài học: Động vật", imageSrc: imageCourse8 },
   { title: "Bài học: Động vật", imageSrc: imageCourse9 },
 ];
+
 const favoriteCourses = [
   { title: "Bài học: Động vật", imageSrc: imageCourse1 },
   { title: "Bài học: Động vật", imageSrc: imageCourse2},
@@ -63,79 +69,157 @@ const favoriteCourses = [
   { title: "Favorite 6", imageSrc: imageCourse9 },
 ];
 
-/* ---------------- LAYOUT ---------------- */
-function Layout() {
-  const [selectedFilter, setSelectedFilter] = useState(null);
-  const location = useLocation();
-
+/* ---------------- COURSE DASHBOARD ---------------- */
+function CourseDashboard({ selectedFilter, setSelectedFilter }) {
   const resultsData = [
     ...recentCourses,
     ...yourCourses,
     ...favoriteCourses,
   ];
 
+  return selectedFilter ? (
+    <div className="ResultsWrapper">
+      <ResultsGrid
+        courses={resultsData}
+        onBack={() => setSelectedFilter(null)}
+      />
+    </div>
+  ) : (
+    <>
+      <section className="section">
+        <Course courses={recentCourses} title="Recent courses" />
+      </section>
+      <section className="section">
+        <Course courses={recentCourses} title="Từ vựng mới" />
+      </section>
+      <section className="section">
+        <Course courses={yourCourses} title="Your courses" />
+      </section>
+      <section className="section">
+        <Course courses={favoriteCourses} title="Favorites" />
+      </section>
+    </>
+  );
+}
+
+/* ---------------- LAYOUT ---------------- */
+function Layout() {
+  const [selectedFilter, setSelectedFilter] = React.useState(null);
+  const location = useLocation();
+  const { currentUser } = useAuth();
+
+ 
+  const isAuthPage = location.pathname === "/login" || location.pathname === "/signup";
+  
+
+  const showFilterBar = !isAuthPage && 
+                       location.pathname !== "/" && 
+                       location.pathname !== "/translate";
+
   return (
     <div className="Page">
-      {/* ===== HEADER (cố định) ===== */}
-      <Header className="Page__header" UserName="Nguyen Anh Dung" />
+      {!isAuthPage && (
+        <Header className="Page__header" />
+      )}
 
-      {/* ===== CONTENT ===== */}
       <main className="Page__content">
-        {/* Filter bar chỉ hiện ngoài trang chủ và KHÔNG hiện ở /translate */}
-        {location.pathname !== "/" && location.pathname !== "/translate" && (
-          <CourseFilterBar topicsData={courseTopics} />
-        )}
+        {showFilterBar && <CourseFilterBar topicsData={courseTopics} />}
 
         <Routes>
-          {/* Trang Home */}
           <Route path="/" element={<HomePage />} />
-
-          {/* Trang Translate */}
-          <Route path="/translate" element={<Translate />} />
-
-          {/* Trang Course */}
-          <Route
-            path="/course"
-            element={
-              selectedFilter ? (
-                <div className="ResultsWrapper">
-                  <ResultsGrid
-                    courses={resultsData}
-                    onBack={() => setSelectedFilter(null)}
-                  />
-                </div>
-              ) : (
-                <>
-                  <section className="section">
-                    <Course courses={recentCourses} title="Recent courses" />
-                  </section>
-                  <section className="section">
-                    <Course courses={recentCourses} title="Từ vựng mới" />
-                  </section>
-                  <section className="section">
-                    <Course courses={yourCourses} title="Your courses" />
-                  </section>
-                  <section className="section">
-                    <Course courses={favoriteCourses} title="Favorites" />
-                  </section>
-                </>
-              )
-            }
-          />
-          {/* Trang kết quả khi bấm Xem toàn bộ */}
-          <Route path="/course/results" element={<CourseResultsPage />} />
-
-          {/* Trang Profile và Settings */}
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/settings" element={<SettingsPage />} />
-
-          {/* Trang Video */}
-          <Route path="/video/:videoId" element={<VideoPage />} />
+          
+          <Route path="/translate" element={
+              <Translate />
+          } />
+          
+          <Route path="/course" element={
+            <PrivateRoute>
+              <CourseDashboard 
+                selectedFilter={selectedFilter} 
+                setSelectedFilter={setSelectedFilter} 
+              />
+            </PrivateRoute>
+          } />
+          
+          <Route path="/course/results" element={
+            <PrivateRoute>
+              <CourseResultsPage />
+            </PrivateRoute>
+          } />
+          
+          <Route path="/profile" element={
+            <PrivateRoute>
+              <ProfilePage />
+            </PrivateRoute>
+          } />
+          
+          <Route path="/settings" element={
+            <PrivateRoute>
+              <SettingsPage />
+            </PrivateRoute>
+          } />
+          
+          <Route path="/video/:videoId" element={
+            <PrivateRoute>
+              <VideoPage />
+            </PrivateRoute>
+          } />
+          
+          <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>
       </main>
 
-      {/* ===== FOOTER ===== */}
-      <Footer className="Page__footer" />
+      {!isAuthPage && <Footer className="Page__footer" />}
+    </div>
+  );
+}
+
+/* ---------------- COURSE RESULTS PAGE ---------------- */
+function CourseResultsPage() {
+  const location = useLocation();
+  const courses = location.state?.courses || [];
+  const title = location.state?.title || 'Results';
+  
+  return (
+    <div className="ResultsWrapper">
+      <div style={{ display: 'flex', alignItems: 'center', marginBottom: 16 }}>
+        <button 
+          onClick={() => window.history.back()} 
+          className="btn-icon" 
+          style={{ 
+            marginBottom: -5, 
+            marginRight: -2, 
+            fontSize: 32, 
+            background: 'none', 
+            border: 'none', 
+            cursor: 'pointer', 
+            padding: '4px 10px', 
+            display: 'flex', 
+            alignItems: 'center', 
+            justifyContent: 'center' 
+          }} 
+          aria-label="Quay lại"
+        >
+          <svg 
+            width="32" 
+            height="32" 
+            viewBox="0 0 32 32" 
+            fill="none" 
+            style={{display:'block'}} 
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path 
+              d="M20 26L10 16L20 6" 
+              stroke="#222" 
+              strokeWidth="3" 
+              strokeLinecap="round" 
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
+        <h2 className="results-title" style={{ margin: 0 }}>{title}</h2>
+      </div>
+      <ResultsGrid courses={courses} />
     </div>
   );
 }
@@ -144,28 +228,15 @@ function Layout() {
 export default function App() {
   return (
     <Router>
-      <Layout />
-      <ScrollToTopButton />
-    </Router>
-  );
-}
+      <AuthProvider>
+         <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
 
-// Component trang kết quả cho 'Xem toàn bộ'
-function CourseResultsPage() {
-  const location = useLocation();
-  const courses = location.state?.courses || [];
-  const title = location.state?.title || 'Results';
-  return (
-    <div className="ResultsWrapper">
-      <div style={{ display: 'flex', alignItems: 'center', marginBottom: 16 }}>
-        <button onClick={() => window.history.back()} className="btn-icon" style={{ marginBottom: -5, marginRight: -2, fontSize: 32, background: 'none', border: 'none', cursor: 'pointer', padding: '4px 10px', display: 'flex', alignItems: 'center', justifyContent: 'center' }} aria-label="Quay lại">
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" style={{display:'block'}} xmlns="http://www.w3.org/2000/svg">
-            <path d="M20 26L10 16L20 6" stroke="#222" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        </button>
-        <h2 className="results-title" style={{ margin: 0}}>{title}</h2>
-      </div>
-      <ResultsGrid courses={courses} />
-    </div>
+          <Route path="/*" element={<Layout />} />
+        </Routes>
+        <ScrollToTopButton />
+      </AuthProvider>
+    </Router>
   );
 }

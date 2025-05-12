@@ -13,7 +13,7 @@ const Translate = () => {
       <Header UserName="Nguyen Anh Dung" />
       <main className="translate-main">
         <div className="translate-content">
-          <VideoBox />
+          <VideoBox setText={setText} />
           <TranslateResultBox
             text={text}
             language={language}
@@ -25,4 +25,4 @@ const Translate = () => {
   );
 };
 
-export default Translate; 
+export default Translate;

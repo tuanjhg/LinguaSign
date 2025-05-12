@@ -35,3 +35,4 @@ export const CourseCard = ({ title, imageSrc, videoId = "1", videoSrc }) => {
     </div>
   );
 };
+export default CourseCard
