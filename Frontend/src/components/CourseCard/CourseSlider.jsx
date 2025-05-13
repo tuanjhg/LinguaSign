@@ -1,32 +1,22 @@
-import React, {
-  useRef,
-  useState,
-  useEffect,
-  useLayoutEffect,
-  useCallback,
-} from 'react';
+// src/components/CourseCard/CourseSlider.jsx
+import React, { useRef, useState, useEffect, useLayoutEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './CourseSlider.css';
 
-/**
- * Slider dùng scroll‑snap + progress‑bar
- */
-export const CourseSlider = ({ courses = [], title = 'Recent courses', onSeeAll }) => {
-   const navigate = useNavigate();
-  const wrapperRef  = useRef(null);  // khung ngoài – gán width = footer
-  const viewportRef = useRef(null);  // phần cuộn
-  const [canPrev, setCanPrev]   = useState(false);
-  const [canNext, setCanNext]   = useState(false);
-  const [progress, setProgress] = useState(0); // 0 – 1
+export const CourseSlider = ({ courses = [], title = 'Recent courses', onSeeAll, isCourseDetail = false }) => {
+  const navigate = useNavigate();
+  const wrapperRef = useRef(null);
+  const viewportRef = useRef(null);
+  const [canPrev, setCanPrev] = useState(false);
+  const [canNext, setCanNext] = useState(false);
+  const [progress, setProgress] = useState(0);
 
-  /* ---------- 1.  Đồng bộ width wrapper với footer ---------- */
   const syncWidthWithFooter = useCallback(() => {
     const wrapper = wrapperRef.current;
     if (!wrapper) return;
 
-    const footer = document.querySelector('footer .container') ||
-                   document.querySelector('footer');
-    const width  = footer ? footer.offsetWidth : window.innerWidth;
+    const footer = document.querySelector('footer .container') || document.querySelector('footer');
+    const width = footer ? footer.offsetWidth : window.innerWidth;
 
     wrapper.style.width = `${width}px`;
   }, []);
@@ -37,7 +27,6 @@ export const CourseSlider = ({ courses = [], title = 'Recent courses', onSeeAll 
     return () => window.removeEventListener('resize', syncWidthWithFooter);
   }, [syncWidthWithFooter]);
 
-  /* ---------- 2.  Cập nhật nút & progress khi cuộn ---------- */
   useEffect(() => {
     const updateUI = () => {
       const el = viewportRef.current;
@@ -46,9 +35,8 @@ export const CourseSlider = ({ courses = [], title = 'Recent courses', onSeeAll 
       setCanPrev(Math.round(el.scrollLeft) > 0);
       setCanNext(el.scrollLeft + el.clientWidth < el.scrollWidth - 1);
 
-      const ratio =
-        el.scrollLeft / (el.scrollWidth - el.clientWidth || 1);
-      setProgress(ratio);          // 0 → 1
+      const ratio = el.scrollLeft / (el.scrollWidth - el.clientWidth || 1);
+      setProgress(ratio);
     };
 
     const el = viewportRef.current;
@@ -63,41 +51,62 @@ export const CourseSlider = ({ courses = [], title = 'Recent courses', onSeeAll 
     };
   }, []);
 
-  /* ---------- 3.  Xử lý click arrow ---------- */
   const handlePrev = () => {
     const el = viewportRef.current;
     if (el) el.scrollBy({ left: -el.clientWidth, behavior: 'smooth' });
   };
+
   const handleNext = () => {
     const el = viewportRef.current;
     if (el) el.scrollBy({ left: el.clientWidth, behavior: 'smooth' });
   };
 
-  /* ---------- 4.  Render ---------- */
+  const handleCourseClick = (course, idx) => {
+    if (isCourseDetail) {
+
+      navigate(`/course/${course.courseId}/video/${course.videoId || (idx + 1)}`);
+    } else {
+
+      navigate(`/course/${course.courseId}`);
+    }
+  };
+
   return (
     <div
       className="course-slider-remake-wrapper"
       ref={wrapperRef}
       style={{
-        padding: '10px 0 30px  0px ',
+        padding: '10px 0 30px 0px',
         margin: '0 auto',
         maxWidth: 1300,
         position: 'relative',
       }}
     >
-      <div style={{ padding: '0 40px 9px 18px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <span style={{ 
-          fontSize: '2.3rem',
-          fontWeight: 900,
-          color: 'rgb(0, 0, 0)',
-          margin: 0, 
-          letterSpacing: 1, 
-          lineHeight: 1,
-          textShadow: '0 2px 8px rgba(26,35,126,0.08)',
-          fontFamily: title === 'Từ vựng mới'
-            ? 'Times New Roman, Times, DejaVu Serif, serif'
-            : 'Roboto, Helvetica, Arial, sans-serif'
-        }}>{title}</span>
+      <div
+        style={{
+          padding: '0 40px 9px 18px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+        }}
+      >
+        <span
+          style={{
+            fontSize: '2.3rem',
+            fontWeight: 900,
+            color: 'rgb(0, 0, 0)',
+            margin: 0,
+            letterSpacing: 1,
+            lineHeight: 1,
+            textShadow: '0 2px 8px rgba(26,35,126,0.08)',
+            fontFamily:
+              title === 'Từ vựng mới'
+                ? 'Times New Roman, Times, DejaVu Serif, serif'
+                : 'Roboto, Helvetica, Arial, sans-serif',
+          }}
+        >
+          {title}
+        </span>
         <button
           onClick={onSeeAll}
           className="see-all-btn"
@@ -116,12 +125,24 @@ export const CourseSlider = ({ courses = [], title = 'Recent courses', onSeeAll 
           aria-label="Xem toàn bộ"
         >
           Xem toàn bộ
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" style={{display:'inline',verticalAlign:'middle'}} xmlns="http://www.w3.org/2000/svg">
-            <path d="M9 6L15 12L9 18" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            style={{ display: 'inline', verticalAlign: 'middle' }}
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M9 6L15 12L9 18"
+              stroke="currentColor"
+              strokeWidth="2.2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </svg>
         </button>
       </div>
-      {/* Nút prev (ẩn nếu không prev được) */}
       {canPrev && (
         <button
           className="slider-arrow left"
@@ -147,21 +168,48 @@ export const CourseSlider = ({ courses = [], title = 'Recent courses', onSeeAll 
             padding: 0,
             transition: 'transform .18s cubic-bezier(.4,0,.2,1)',
           }}
-          onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-50%) scale(1.18)'}
-          onMouseLeave={e => e.currentTarget.style.transform = 'translateY(-50%) scale(1)'}
+          onMouseEnter={(e) => (e.currentTarget.style.transform = 'translateY(-50%) scale(1.18)')}
+          onMouseLeave={(e) => (e.currentTarget.style.transform = 'translateY(-50%) scale(1)')}
           aria-label="Trước"
         >
-          <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M20 26L10 16L20 6" stroke="#222" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+          <svg
+            width="28"
+            height="28"
+            viewBox="0 0 32 32"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M20 26L10 16L20 6"
+              stroke="#222"
+              strokeWidth="3"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </svg>
         </button>
       )}
-      <div className="course-slider-remake-viewport" ref={viewportRef} style={{ display: 'flex', gap: 28, overflowX: 'auto', overflowY: 'visible', scrollSnapType: 'x mandatory', WebkitOverflowScrolling: 'touch', scrollBehavior: 'smooth', padding: '24px 40px 32px 40px', scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+      <div
+        className="course-slider-remake-viewport"
+        ref={viewportRef}
+        style={{
+          display: 'flex',
+          gap: 28,
+          overflowX: 'auto',
+          overflowY: 'visible',
+          scrollSnapType: 'x mandatory',
+          WebkitOverflowScrolling: 'touch',
+          scrollBehavior: 'smooth',
+          padding: '24px 40px 32px 40px',
+          scrollbarWidth: 'none',
+          msOverflowStyle: 'none',
+        }}
+      >
         {courses.map((course, idx) => (
           <div
             className="course-slider-remake-item"
             key={idx}
-            onClick={() => navigate(`/video/${course.videoId || idx + 1}`)}
+            onClick={() => handleCourseClick(course, idx)}
             style={{
               background: '#fff',
               borderRadius: 18,
@@ -179,11 +227,11 @@ export const CourseSlider = ({ courses = [], title = 'Recent courses', onSeeAll 
               overflow: 'hidden',
               scrollSnapAlign: 'start',
             }}
-            onMouseEnter={e => {
+            onMouseEnter={(e) => {
               e.currentTarget.style.boxShadow = '0 8px 32px rgba(0,0,0,0.13)';
               e.currentTarget.style.transform = 'scale(1.05) translateY(-5px)';
             }}
-            onMouseLeave={e => {
+            onMouseLeave={(e) => {
               e.currentTarget.style.boxShadow = '0 2px 12px rgba(0,0,0,0.07)';
               e.currentTarget.style.transform = 'scale(1) translateY(0)';
             }}
@@ -202,14 +250,21 @@ export const CourseSlider = ({ courses = [], title = 'Recent courses', onSeeAll 
               }}
             />
             <div style={{ padding: '14px 16px 10px 16px', width: '100%' }}>
-              <div style={{ fontSize: 18, fontWeight: 700, color: '#222', marginBottom: 2, lineHeight: 1.2 }}>
+              <div
+                style={{
+                  fontSize: 18,
+                  fontWeight: 700,
+                  color: '#222',
+                  marginBottom: 2,
+                  lineHeight: 1.2,
+                }}
+              >
                 {course.title}
               </div>
             </div>
           </div>
         ))}
       </div>
-      {/* Nút next (ẩn nếu không next được) */}
       {canNext && (
         <button
           className="slider-arrow right"
@@ -235,12 +290,24 @@ export const CourseSlider = ({ courses = [], title = 'Recent courses', onSeeAll 
             padding: 0,
             transition: 'transform .18s cubic-bezier(.4,0,.2,1)',
           }}
-          onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-50%) scale(1.18)'}
-          onMouseLeave={e => e.currentTarget.style.transform = 'translateY(-50%) scale(1)'}
+          onMouseEnter={(e) => (e.currentTarget.style.transform = 'translateY(-50%) scale(1.18)')}
+          onMouseLeave={(e) => (e.currentTarget.style.transform = 'translateY(-50%) scale(1)')}
           aria-label="Tiếp"
         >
-          <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 26L22 16L12 6" stroke="#222" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+          <svg
+            width="28"
+            height="28"
+            viewBox="0 0 32 32"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 26L22 16L12 6"
+              stroke="#222"
+              strokeWidth="3"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </svg>
         </button>
       )}

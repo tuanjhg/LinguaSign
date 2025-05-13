@@ -69,7 +69,6 @@ export const Header = () => {
           { label: 'Home Page', path: '/' },
           { label: 'Translate', path: '/translate' },
           { label: 'Course', path: '/course' },
-          {label:'Quiz',path :'/quiz'}
         ].map((item, index) => (
           <button
             key={index}

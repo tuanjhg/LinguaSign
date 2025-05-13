@@ -1,86 +1,236 @@
+/* src/components/CourseCard/Quiz.css */
 .quiz-container {
-  max-width: 600px;
-  margin: auto;
+  max-width: 800px;
+  margin: 0 auto;
   padding: 20px;
+  text-align: center;
+}
+
+.quiz-container h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.quiz-info p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  margin-bottom: 20px;
 }
 
 .video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 300px;
-  border-radius: 12px;
+  height: 100%;
+  border-radius: 8px;
 }
 
-.options {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 15px;
+.question-text {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 20px 0;
+}
+
+.options-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin-bottom: 20px;
 }
 
 .option-button {
-  padding: 12px;
-  font-size: 16px;
-  border-radius: 8px;
-  cursor: pointer;
-  background-color: #eee;
+  padding: 15px;
+  font-size: 1.1rem;
   border: none;
-  transition: 0.3s;
+  border-radius: 8px;
+  background-color: #f0f0f0;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
 }
 
-.option-button:hover {
-  background-color: #ddd;
+.option-button:hover:not(:disabled) {
+  background-color: #e0e0e0;
+  transform: scale(1.05);
 }
 
-.correct {
+.option-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.option-button.correct {
   background-color: #4caf50;
   color: white;
 }
 
-.wrong {
+.option-button.wrong {
   background-color: #f44336;
   color: white;
 }
 
 .quiz-footer {
   margin-top: 20px;
-  text-align: center;
+}
+
+.quiz-footer p {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+}
+
+.next-button,
+.back-button,
+.restart-button {
+  padding: 10px 20px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
 }
 
 .next-button {
-  margin-top: 10px;
-  padding: 10px 16px;
-  border: none;
   background-color: #007bff;
   color: white;
-  border-radius: 8px;
-  cursor: pointer;
 }
 
-.quiz-button {
-  margin-left: auto;
-  padding: 8px 12px;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.quiz-button:hover {
-  background-color: #45a049;
+.next-button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
 }
 
 .back-button {
-  background-color: #f1f1f1;
-  color: #333;
-  border: 1px solid #ccc;
-  padding: 10px 20px;
-  margin-top: 20px;
-  cursor: pointer;
-  font-size: 16px;
+  background-color: #6c757d;
+  color: white;
+  margin-top: 10px;
 }
 
 .back-button:hover {
-  background-color: #ddd;
+  background-color: #5a6268;
+  transform: scale(1.05);
+}
+
+.restart-button {
+  background-color: #28a745;
+  color: white;
+  margin-right: 10px;
+}
+
+.restart-button:hover {
+  background-color: #218838;
+  transform: scale(1.05);
+}
+
+/* Quiz Complete Screen */
+.quiz-complete-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f4f4f4;
+  padding: 20px;
+}
+
+.quiz-complete-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  text-align: center;
+  max-width: 500px;
+  width: 100%;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.quiz-complete-card h2 {
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+  color: #222;
+}
+
+.score-text {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #007bff;
+  margin-bottom: 15px;
+}
+
+.score-message {
+  font-size: 1.3rem;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.complete-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .quiz-container {
+    padding: 15px;
+  }
+
+  .quiz-container h2 {
+    font-size: 1.8rem;
+  }
+
+  .question-text {
+    font-size: 1.1rem;
+  }
+
+  .options-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .option-button {
+    padding: 12px;
+    font-size: 1rem;
+  }
+
+  .quiz-complete-card {
+    padding: 20px;
+  }
+
+  .quiz-complete-card h2 {
+    font-size: 1.8rem;
+  }
+
+  .score-text {
+    font-size: 1.5rem;
+  }
+
+  .score-message {
+    font-size: 1.1rem;
+  }
+
+  .complete-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .restart-button,
+  .back-button {
+    width: 100%;
+  }
 }

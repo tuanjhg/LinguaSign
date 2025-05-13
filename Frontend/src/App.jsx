@@ -23,8 +23,8 @@ import { Signup } from './components/Auth/Signup';
 import { AuthProvider, useAuth } from './components/Auth/AuthContext';
 import { PrivateRoute } from './components/Auth/PrivateRoute';
 import Quiz  from './components/CourseCard/Quiz'
-import CourseDetail from './components/CourseCard/CourseDetail';
 import { courseTopics } from './data/courseTopics';
+import CourseDetail from './components/CourseCard/CourseDetail'
 
 import "./App.css";
 import imageCourse1 from "./assets/course1.jpg";
@@ -155,14 +155,30 @@ function Layout() {
             </PrivateRoute>
           } />
           
-          <Route path="/video/:videoId" element={
-            <PrivateRoute>
-              <VideoPage />
-            </PrivateRoute>
-          } />
-          {/* <Route path="/course/:courseId" element={<CourseDetail />} />
-          <Route path="/course/:courseId/:entryTitle?" element={<CourseDetail />} /> */}
-          <Route path="/quiz" element={<Quiz />}/>
+          <Route
+            path="/course/:courseId/video/:videoId"
+            element={
+              <PrivateRoute>
+                <VideoPage />
+              </PrivateRoute>
+            }
+/>
+         <Route
+            path="/course/:courseId/quiz"
+            element={
+              <PrivateRoute>
+                <Quiz />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/course/:courseId"
+            element={
+              <PrivateRoute>
+                <CourseDetail />
+              </PrivateRoute>
+            }
+          />
           <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>
       </main>

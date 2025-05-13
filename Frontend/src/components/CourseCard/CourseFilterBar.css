@@ -23,6 +23,18 @@
   align-items: center;
   gap: 22px;
 }
+.back-group {
+  margin-left: 8px;
+}
+.back-button {
+  margin-left: 8px; 
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: #222;
+  cursor: pointer;
+  padding: 8px
+}
 
 .filter-icon {
   background: none;
