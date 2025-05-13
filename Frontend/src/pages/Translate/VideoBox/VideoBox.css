@@ -2,7 +2,8 @@
   position: relative;
   width: 100%;
   min-height: 400px;
-  background: #dbdbdb;
+  background: #fff;
+  border: 2px solid #d3d3d3;
   border-radius: 16px;
   display: flex;
   align-items: center;
@@ -38,4 +39,4 @@
 .video-icon {
   color: #444;
   opacity: 0.7;
-} 
+}

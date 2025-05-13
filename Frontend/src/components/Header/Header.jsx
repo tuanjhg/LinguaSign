@@ -5,13 +5,17 @@ import Sign from '../../assets/Logo.png';
 import { Noti } from "../Noti/Noti";
 import { UserMenu } from "../UserMenu/UserMenu";
 import { FaSearch } from 'react-icons/fa';
+import { useApp } from "../../contexts/AppContext";
 
-export const Header = ({ UserName }) => {
+export const Header = () => {
   const [showNoti, setShowNoti] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const userMenuRef = useRef(null);
+
+  // Sử dụng context
+  const { userData, t } = useApp();
 
   // Search state
   const [searchActive, setSearchActive] = useState(false);
@@ -63,9 +67,9 @@ export const Header = ({ UserName }) => {
       </div>
       <div className={styles.navigation}>
         {[
-          { label: "Home Page", path: "/" },
-          { label: "Translate", path: "/translate" },
-          { label: "Course", path: "/course" }
+          { label: t.homePage, path: "/" },
+          { label: t.translate, path: "/translate" },
+          { label: t.course, path: "/course" }
         ].map((item, index) => (
           <button
             key={index}
@@ -85,7 +89,7 @@ export const Header = ({ UserName }) => {
           <input
             className={styles.searchInput}
             type="text"
-            placeholder="Search..."
+            placeholder={t.search}
             ref={inputRef}
             value={searchValue}
             onChange={e => setSearchValue(e.target.value)}
@@ -123,17 +127,29 @@ export const Header = ({ UserName }) => {
             onClick={() => setShowUserMenu(prev => !prev)}
             style={{ cursor: "pointer" }}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              width="24px"
-              height="24px"
-            >
-              <path d="M12 12c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm0 2c-3.33 0-10 1.67-10 5v3h20v-3c0-3.33-6.67-5-10-5z" />
-            </svg>
+            {userData.avatar ? (
+              <img
+                src={userData.avatar}
+                alt="User Avatar"
+                className={styles.avatarImage}
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = 'https://via.placeholder.com/80?text=Avatar';
+                }}
+              />
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                width="24px"
+                height="24px"
+              >
+                <path d="M12 12c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm0 2c-3.33 0-10 1.67-10 5v3h20v-3c0-3.33-6.67-5-10-5z" />
+              </svg>
+            )}
           </div>
-          <span>{UserName}</span>
+          <span>{`${userData.name} ${userData.surname}`}</span>
           {showUserMenu && (
             <UserMenu onClose={() => setShowUserMenu(false)} />
           )}

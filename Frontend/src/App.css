@@ -34,6 +34,7 @@ body,
   flex: 1 0 auto;
   padding-top: var(--header-height); /* tránh bị header che */
   padding-bottom: 30px;              /* luôn hở 30 px tới footer */
+  background-color: #fff;            /* đảm bảo nền trắng */
 }
 
 /* ----- Filter Bar (bên phải, cách header 30 px) ----- */

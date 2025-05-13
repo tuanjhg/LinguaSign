@@ -5,10 +5,12 @@ import { FaUserEdit } from 'react-icons/fa';
 import { FiSettings } from 'react-icons/fi';
 import { FiLogOut } from 'react-icons/fi';
 import { LogoutConfirmModal } from "../Modal/LogoutConfirmModal";
+import { useApp } from "../../contexts/AppContext";
 
 export const UserMenu = ({ onClose }) => {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const navigate = useNavigate();
+  const { t, userData } = useApp();
 
   const handleEdit = () => {
     navigate('/profile');
@@ -38,29 +40,41 @@ export const UserMenu = ({ onClose }) => {
       <div className={styles.userMenuContainer}>
         <div className={styles.userMenuHeader}>
           <div className={styles.userAvatar}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              width="24px"
-              height="24px"
-            >
-              <path d="M12 12c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm0 2c-3.33 0-10 1.67-10 5v3h20v-3c0-3.33-6.67-5-10-5z" />
-            </svg>
+            {userData.avatar ? (
+              <img
+                src={userData.avatar}
+                alt="User Avatar"
+                className={styles.avatarImage}
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = 'https://via.placeholder.com/80?text=Avatar';
+                }}
+              />
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                width="24px"
+                height="24px"
+              >
+                <path d="M12 12c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm0 2c-3.33 0-10 1.67-10 5v3h20v-3c0-3.33-6.67-5-10-5z" />
+              </svg>
+            )}
           </div>
         </div>
         <div className={styles.userMenuBody}>
           <button className={styles.menuItem} onClick={handleEdit}>
             <FaUserEdit className={styles.menuIcon} />
-            <span>Edit</span>
+            <span>{t.profile}</span>
           </button>
           <button className={styles.menuItem} onClick={handleSetting}>
             <FiSettings className={styles.menuIcon} />
-            <span>Setting</span>
+            <span>{t.settings}</span>
           </button>
           <button className={styles.menuItem} onClick={handleLogout}>
             <FiLogOut className={styles.menuIcon} />
-            <span>Log out</span>
+            <span>{t.logout}</span>
           </button>
         </div>
       </div>

@@ -5,12 +5,16 @@ import { FaUserEdit } from 'react-icons/fa';
 import { FiSettings } from 'react-icons/fi';
 import { FiLogOut } from 'react-icons/fi';
 import { LogoutConfirmModal } from "../Modal/LogoutConfirmModal";
+import { AvatarModal } from "../Modal/AvatarModal";
+import { useApp } from "../../contexts/AppContext";
 
 export const UserSettingsLayout = ({ children }) => {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const [showAvatarModal, setShowAvatarModal] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  
+  const { userData, updateUserData, t } = useApp();
+
   const isActive = (path) => {
     return location.pathname === path;
   };
@@ -18,7 +22,7 @@ export const UserSettingsLayout = ({ children }) => {
   const handleLogout = () => {
     setShowLogoutModal(true);
   };
-  
+
   const confirmLogout = () => {
     console.log("Đăng xuất thành công");
     // Thực hiện đăng xuất ở đây (xóa token, reset state, etc.)
@@ -27,22 +31,45 @@ export const UserSettingsLayout = ({ children }) => {
     navigate('/');
   };
 
+  // Xử lý khi click vào nút chỉnh sửa avatar
+  const handleEditAvatar = () => {
+    setShowAvatarModal(true);
+  };
+
+  // Xử lý khi thay đổi avatar
+  const handleAvatarChange = (avatarUrl) => {
+    updateUserData({ avatar: avatarUrl });
+    alert(t.avatarUpdated);
+  };
+
   return (
     <div className={styles.settingsContainer}>
       <div className={styles.sidebar}>
         <div className={styles.sidebarHeader}>
           <div className={styles.userAvatar}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              width="36px"
-              height="36px"
-            >
-              <path d="M12 12c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm0 2c-3.33 0-10 1.67-10 5v3h20v-3c0-3.33-6.67-5-10-5z" />
-            </svg>
+            {userData.avatar ? (
+              <img
+                src={userData.avatar}
+                alt="User Avatar"
+                className={styles.avatarImage}
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = 'https://via.placeholder.com/80?text=Avatar';
+                }}
+              />
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                width="36px"
+                height="36px"
+              >
+                <path d="M12 12c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm0 2c-3.33 0-10 1.67-10 5v3h20v-3c0-3.33-6.67-5-10-5z" />
+              </svg>
+            )}
           </div>
-          <div className={styles.editIcon}>
+          <div className={styles.editIcon} onClick={handleEditAvatar}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -55,14 +82,14 @@ export const UserSettingsLayout = ({ children }) => {
           </div>
         </div>
         <div className={styles.sidebarMenu}>
-          <button 
+          <button
             className={`${styles.sidebarItem} ${isActive('/profile') ? styles.active : ''}`}
             onClick={() => navigate('/profile')}
           >
             <FaUserEdit className={styles.sidebarIcon} />
             <span>Profile</span>
           </button>
-          <button 
+          <button
             className={`${styles.sidebarItem} ${isActive('/settings') ? styles.active : ''}`}
             onClick={() => navigate('/settings')}
           >
@@ -80,11 +107,18 @@ export const UserSettingsLayout = ({ children }) => {
       <div className={styles.content}>
         {children}
       </div>
-      
+
       {showLogoutModal && (
-        <LogoutConfirmModal 
-          onClose={() => setShowLogoutModal(false)} 
-          onConfirm={confirmLogout} 
+        <LogoutConfirmModal
+          onClose={() => setShowLogoutModal(false)}
+          onConfirm={confirmLogout}
+        />
+      )}
+
+      {showAvatarModal && (
+        <AvatarModal
+          onClose={() => setShowAvatarModal(false)}
+          onAvatarChange={handleAvatarChange}
         />
       )}
     </div>

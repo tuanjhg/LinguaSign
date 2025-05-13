@@ -1,0 +1,6 @@
+Thư mục này chứa các avatar mặc định.
+
+Trong môi trường thực tế, bạn sẽ cần thêm các file hình ảnh avatar vào thư mục này.
+Ví dụ: avatar1.png, avatar2.png, avatar3.png, v.v.
+
+Khi triển khai, bạn có thể thay thế các đường dẫn trong AvatarModal.jsx bằng đường dẫn thực tế đến các avatar của bạn.

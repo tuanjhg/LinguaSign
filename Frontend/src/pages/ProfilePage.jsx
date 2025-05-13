@@ -1,16 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { UserSettingsLayout } from "../components/UserSettings/UserSettingsLayout";
 import { CountryCodeSelect } from "../components/UserSettings/CountryCodeSelect";
 import styles from "../components/UserSettings/UserSettings.module.css";
+import { useApp } from "../contexts/AppContext";
 
 export const ProfilePage = () => {
+  // Sử dụng context
+  const { userData, updateUserData, t } = useApp();
+
   const [formData, setFormData] = useState({
-    name: "Nguyen Anh",
-    surname: "Dung",
-    email: "nguyenanhd@example.com",
-    countryCode: "+84",
-    phone: "912345678"
+    name: userData.name,
+    surname: userData.surname,
+    email: userData.email,
+    countryCode: userData.countryCode,
+    phone: userData.phone
   });
+  const [isProcessing, setIsProcessing] = useState(false);
+
+  // Cập nhật formData khi userData thay đổi
+  useEffect(() => {
+    setFormData({
+      name: userData.name,
+      surname: userData.surname,
+      email: userData.email,
+      countryCode: userData.countryCode,
+      phone: userData.phone
+    });
+  }, [userData]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,19 +45,26 @@ export const ProfilePage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsProcessing(true);
     console.log("Form submitted:", formData);
-    // Xử lý lưu thông tin người dùng
-    alert("Thông tin đã được cập nhật!");
+
+    // Giả lập thời gian xử lý
+    setTimeout(() => {
+      // Cập nhật thông tin người dùng vào context
+      updateUserData(formData);
+      setIsProcessing(false);
+      alert(t.infoUpdated);
+    }, 1500);
   };
 
   return (
     <UserSettingsLayout>
-      <h2>Thông tin cá nhân</h2>
-      <p>Cập nhật thông tin cá nhân của bạn</p>
+      <h2>{t.personalInfo}</h2>
+      <p>{t.updatePersonalInfo}</p>
 
       <form onSubmit={handleSubmit}>
         <div className={styles.formGroup}>
-          <label className={styles.formLabel}>Tên</label>
+          <label className={styles.formLabel}>{t.firstName}</label>
           <input
             type="text"
             name="name"
@@ -53,7 +76,7 @@ export const ProfilePage = () => {
         </div>
 
         <div className={styles.formGroup}>
-          <label className={styles.formLabel}>Họ</label>
+          <label className={styles.formLabel}>{t.lastName}</label>
           <input
             type="text"
             name="surname"
@@ -65,7 +88,7 @@ export const ProfilePage = () => {
         </div>
 
         <div className={styles.formGroup}>
-          <label className={styles.formLabel}>Email</label>
+          <label className={styles.formLabel}>{t.email}</label>
           <input
             type="email"
             name="email"
@@ -77,7 +100,7 @@ export const ProfilePage = () => {
         </div>
 
         <div className={styles.formGroup}>
-          <label className={styles.formLabel}>Số điện thoại</label>
+          <label className={styles.formLabel}>{t.phoneNumber}</label>
           <div className={styles.phoneGroup}>
             <CountryCodeSelect
               value={formData.countryCode}
@@ -94,8 +117,12 @@ export const ProfilePage = () => {
           </div>
         </div>
 
-        <button type="submit" className={styles.saveButton}>
-          Lưu thay đổi
+        <button
+          type="submit"
+          className={`${styles.saveButton} ${isProcessing ? styles.processing : ''}`}
+          disabled={isProcessing}
+        >
+          {isProcessing ? t.saving : t.saveChanges}
         </button>
       </form>
     </UserSettingsLayout>

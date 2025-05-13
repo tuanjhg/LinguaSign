@@ -2,7 +2,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: #fafafa;
+  background: #fff;
 }
 
 .translate-main {
@@ -29,4 +29,4 @@
     width: 100%;
     padding: 0 8px;
   }
-} 
+}

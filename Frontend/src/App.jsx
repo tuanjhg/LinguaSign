@@ -5,6 +5,7 @@ import {
   Route,
   useLocation,
 } from "react-router-dom";
+import { AppProvider } from "./contexts/AppContext";
 
 import { Header } from "./components/Header/Header";
 import { Footer } from "./components/Footer/Footer";
@@ -115,7 +116,7 @@ function Layout() {
   return (
     <div className="Page">
       {/* ===== HEADER (cố định) ===== */}
-      <Header className="Page__header" UserName="Nguyen Anh Dung" />
+      <Header className="Page__header" />
 
       {/* ===== CONTENT ===== */}
       <main className="Page__content">
@@ -182,8 +183,10 @@ function Layout() {
 export default function App() {
   return (
     <Router>
-      <Layout />
-      <ScrollToTopButton />
+      <AppProvider>
+        <Layout />
+        <ScrollToTopButton />
+      </AppProvider>
     </Router>
   );
 }

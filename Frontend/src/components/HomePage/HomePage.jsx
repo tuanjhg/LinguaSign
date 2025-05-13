@@ -111,7 +111,7 @@ const HomePage = () => {
 
   return (
     <>
-      <Header UserName="Nguyen Anh Dung" />
+      <Header />
       <div style={{position: 'relative'}}>
         <img
           src={homePageImage}
@@ -121,7 +121,7 @@ const HomePage = () => {
         />
         <div className={styles.overlayOnImage}>
           <div className={`${styles.overlayText} ${overlayVisible ? styles.overlayFadeIn : ''}`}>
-            Học ngôn ngữ&nbsp;ký hiệu dễ dàng hơn 
+            Học ngôn ngữ&nbsp;ký hiệu dễ dàng hơn
           </div>
           <button className={`${styles.getStartedOnImage} ${overlayVisible ? styles.overlayFadeInBtn : ''}`}>Bắt đầu ngay</button>
         </div>
