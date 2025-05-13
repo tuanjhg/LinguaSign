@@ -1,0 +1,156 @@
+/* CourseDetail.css */
+
+.dictionary-container {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.dictionary-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.back-button {
+  background-color: #f0f0f0;
+  border: none;
+  padding: 8px 12px;
+  margin-right: 15px;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #ddd;
+}
+
+.dictionary-layout {
+  display: flex;
+  gap: 24px;
+}
+
+.entries-list-section {
+  width: 35%;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.entries-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.entry-card {
+  display: flex;
+  align-items: center;
+  background-color: #fafafa;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.2s ease-in-out;
+}
+
+.entry-card:hover {
+  background-color: #f2f2f2;
+}
+
+.entry-card.active {
+  border-color: #007bff;
+  background-color: #e7f0ff;
+}
+
+.entry-thumbnail img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-right: 12px;
+}
+
+.entry-info h3 {
+  font-size: 16px;
+  margin: 0;
+}
+
+.entry-detail-section {
+  flex-grow: 1;
+}
+
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
+  margin-bottom: 16px;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+.entry-detail h2 {
+  margin-bottom: 10px;
+}
+
+.entry-detail p {
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.source-link {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.source-link:hover {
+  text-decoration: underline;
+}
+
+.loading-container,
+.error-container {
+  text-align: center;
+  margin-top: 100px;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 5px solid #ccc;
+  border-top: 5px solid #007bff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: auto;
+  margin-bottom: 16px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.home-button {
+  padding: 10px 16px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.home-button:hover {
+  background-color: #0056b3;
+}

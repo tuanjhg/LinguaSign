@@ -45,8 +45,8 @@ export const Header = () => {
   };
 
   const notifications = [
-    { id: 1, title: 'Notification 1', body: 'Đây là nội dung chi tiết của Notification 1. Bạn có thể kiểm tra giao diện chi tiết ở đây.' },
-    { id: 2, title: 'Notification 2', body: 'Nội dung thông báo số 2.' },
+    { id: 1, title: 'Notification 1', body: 'Bạn đang học chủ đề về ẩm thực, Tiến độ là 30%' },
+    { id: 2, title: 'Notification 2', body: 'Bạn đã hoàn thành chủ đề về quốc gia' },
     { id: 3, title: 'Notification 3', body: 'Nội dung thông báo số 3.' },
     { id: 4, title: 'Noti test thử giao diện', body: 'Đây là noti test để bạn kiểm tra popup chi tiết, cuộn nội dung, sssssssssssssssss, sssssssssssss, sssssssss, ssssssss, sssssssssssssnút back và nút đóng.' }
   ];
@@ -68,7 +68,8 @@ export const Header = () => {
         {[
           { label: 'Home Page', path: '/' },
           { label: 'Translate', path: '/translate' },
-          { label: 'Course', path: '/course' }
+          { label: 'Course', path: '/course' },
+          {label:'Quiz',path :'/quiz'}
         ].map((item, index) => (
           <button
             key={index}

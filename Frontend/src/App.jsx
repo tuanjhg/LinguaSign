@@ -22,7 +22,8 @@ import { Login } from './components/Auth/Login';
 import { Signup } from './components/Auth/Signup';
 import { AuthProvider, useAuth } from './components/Auth/AuthContext';
 import { PrivateRoute } from './components/Auth/PrivateRoute';
-
+import Quiz  from './components/CourseCard/Quiz'
+import CourseDetail from './components/CourseCard/CourseDetail';
 import { courseTopics } from './data/courseTopics';
 
 import "./App.css";
@@ -38,12 +39,9 @@ import imageCourse9 from "./assets/course9.jpg";
 
 /* ---------------- MOCK DATA ---------------- */
 const recentCourses = [
-  { title: "Chủ đề: Ẩm thực", imageSrc: imageCourse1 },
-  { title: "Chủ đề: Câu cảm thán", imageSrc: imageCourse7 },
-  { title: "Bài học: Các quốc gia", imageSrc: imageCourse6 },
-  { id: 1, title: "Bài học: Ẩm thực", courseId: "course1", imageSrc: imageCourse1 },
-  { id: 2, title: "Bài học: Các quốc gia", courseId: "course2", imageSrc: imageCourse7 },
-  { id: 3, title: "Bài học: Con vật", courseId: "course3", imageSrc: imageCourse6 },
+  { id: 1, title: "Bài học: Ẩm thực", courseId: "course1", imageSrc: imageCourse1},
+  { id: 2, title: "Bài học: Các quốc gia", courseId: "course2", imageSrc: imageCourse1 },
+  { id: 3, title: "Bài học: Con vật", courseId: "course3", imageSrc: imageCourse1 },
 ];
 
 const yourCourses = [
@@ -106,8 +104,6 @@ function CourseDashboard({ selectedFilter, setSelectedFilter }) {
 function Layout() {
   const [selectedFilter, setSelectedFilter] = React.useState(null);
   const location = useLocation();
-  const { currentUser } = useAuth();
-
  
   const isAuthPage = location.pathname === "/login" || location.pathname === "/signup";
   
@@ -164,7 +160,9 @@ function Layout() {
               <VideoPage />
             </PrivateRoute>
           } />
-          
+          {/* <Route path="/course/:courseId" element={<CourseDetail />} />
+          <Route path="/course/:courseId/:entryTitle?" element={<CourseDetail />} /> */}
+          <Route path="/quiz" element={<Quiz />}/>
           <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>
       </main>
@@ -232,7 +230,6 @@ export default function App() {
          <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-
           <Route path="/*" element={<Layout />} />
         </Routes>
         <ScrollToTopButton />
