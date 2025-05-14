@@ -7,20 +7,21 @@ import imageContent1 from '../../assets/imgContent1.JPG';
 
 const cards = [
   {
-    heading: "Heading",
-    subheading: "Subheading",
-    body: "Body text for your whole article or post. We'll put in some lorem ipsum to show how a filled-out page might look:",
-    detail: "Excepteur different emerging, minim veniam anim aute carefully curated. Cizna conversation exquisite perfect nostrud incididunt content. Qui ullamco elit first-class nulla ut. Punctual adipiscing, essential lovely queen tamper occaecat irure. Exclusive kitsch charming Scandinavian impeccable aute quality of life soft power particular Melbourne occaecat cascading. Quo wardrobe aliquip, et Porter destination. Toto remarkable officia Helsinki exceptur Basset hound. Zürich sleepy perfect consectetur.",
+    heading: "Khóa học Ngôn ngữ Ký hiệu",
+    subheading: "Học cách giao tiếp bằng ký hiệu",
+    body: "Khóa học này cung cấp kiến thức cơ bản về ngôn ngữ ký hiệu, giúp bạn tự tin giao tiếp với cộng đồng người khiếm thính.",
+    detail: "Bạn sẽ học cách sử dụng các cử chỉ tay, nét mặt và cơ thể để truyền đạt thông điệp một cách rõ ràng và chính xác. Nội dung khóa học bao gồm từ vựng ký hiệu phổ biến, cấu trúc ngữ pháp cơ bản, và cách biểu đạt cảm xúc thông qua ký hiệu.",
     image: imageContent1
   },
   {
-    heading: "Heading",
-    subheading: "Subheading",
-    body: "Body text for your whole article or post. We'll put in some lorem ipsum to show how a filled-out page might look:",
-    detail: "Excepteur different emerging, minim veniam anim aute carefully curated. Cizna conversation exquisite perfect nostrud incididunt content. Qui ullamco elit first-class nulla ut. Punctual adipiscing, essential lovely queen tamper occaecat irure. Exclusive kitsch charming Scandinavian impeccable aute quality of life soft power particular Melbourne occaecat cascading. Quo wardrobe aliquip, et Porter destination. Toto remarkable officia Helsinki exceptur Basset hound. Zürich sleepy perfect consectetur.",
+    heading: "Phát triển kỹ năng Ngôn ngữ Ký hiệu",
+    subheading: "Nâng cao khả năng giao tiếp bằng ký hiệu",
+    body: "Tiếp tục hành trình học tập với các bài học nâng cao, giúp bạn giao tiếp linh hoạt và hiệu quả hơn.",
+    detail: "Khóa học này sẽ đi sâu vào các chủ đề giao tiếp hàng ngày, ký hiệu chuyên ngành và kỹ năng phiên dịch ngôn ngữ ký hiệu. Bạn sẽ được thực hành với các tình huống thực tế, cải thiện tốc độ và độ chính xác khi sử dụng ngôn ngữ ký hiệu.",
     image: imageContent2
   }
 ];
+
 
 const HomePage = () => {
   const cardRefs = useRef([]);
@@ -111,7 +112,7 @@ const HomePage = () => {
 
   return (
     <>
-      <Header UserName="Nguyen Anh Dung" />
+      <Header UserName="Khong Manh Tuan" />
       <div style={{position: 'relative'}}>
         <img
           src={homePageImage}
@@ -174,16 +175,17 @@ const HomePage = () => {
                 <div className={styles.serviceIcon}>
                   {idx === 0 ? '⚙️' : idx === 1 ? '🏃‍♂️' : '🏢'}
                 </div>
-                <div className={styles.serviceName}>
-                  {idx === 0 ? 'PROJECTS' : idx === 1 ? 'SKILLS' : 'NETWORK'}
-                </div>
-                <div className={styles.serviceDesc}>
-                  {idx === 0
-                    ? 'I have worked on many projects and I am very proud of them. I am a very good developer and I am always looking for new projects.'
-                    : idx === 1
-                    ? 'I have a lot of skills and I am very good at them. I am very good at programming and I am always looking for new skills.'
-                    : 'I have a lot of network skills and I am very good at them. I am very good at networking and I am always looking for new network skills.'}
-                </div>
+              <div className={styles.serviceName}>
+              {idx === 0 ? 'CƠ BẢN' : idx === 1 ? 'NÂNG CAO' : 'GIAO TIẾP'}
+            </div>
+            <div className={styles.serviceDesc}>
+              {idx === 0
+                ? 'Khóa học giúp bạn làm quen với ngôn ngữ ký hiệu, học cách diễn đạt ý tưởng cơ bản và giao tiếp với người khiếm thính.'
+                : idx === 1
+                ? 'Đào sâu hơn vào kỹ năng sử dụng ngôn ngữ ký hiệu, học ký hiệu chuyên ngành và cách biểu đạt cảm xúc một cách linh hoạt.'
+                : 'Thực hành giao tiếp thực tế, giúp bạn tự tin trò chuyện bằng ngôn ngữ ký hiệu với cộng đồng và trong các tình huống hàng ngày.'}
+            </div>
+
               </div>
             ))}
           </div>

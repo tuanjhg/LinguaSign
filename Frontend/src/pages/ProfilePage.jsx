@@ -5,9 +5,9 @@ import styles from "../components/UserSettings/UserSettings.module.css";
 
 export const ProfilePage = () => {
   const [formData, setFormData] = useState({
-    name: "Nguyen Anh",
-    surname: "Dung",
-    email: "nguyenanhd@example.com",
+    name: "Khong Manh ",
+    surname: "Tuan",
+    email: "admin@test.com",
     countryCode: "+84",
     phone: "912345678"
   });
