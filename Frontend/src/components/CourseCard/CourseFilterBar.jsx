@@ -16,7 +16,7 @@ const CourseFilterBar = ({ topicsData }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const isDetailOrVideoPage = location.pathname.includes("/course/") &&
+  const isDetailOrVideoPage = location.pathname.includes("/course/") && 
                             (location.pathname.includes("/video/") || 
                              location.pathname.includes("/quiz") || 
                              !location.pathname.includes("/results"));

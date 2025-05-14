@@ -1,3 +1,5 @@
 node_modules
 .env
 tfjs_env
+images
+Backend/signLanguage-Dataset-15-WithStillImages.npy

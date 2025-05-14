@@ -4,6 +4,7 @@ body,
 #root {
   height: 100%;
   margin: 0;
+  background-color: #fff;  
 }
 
 /* ---------- BIẾN ---------- */
@@ -32,7 +33,8 @@ body,
 .Page__content {
   flex: 1 0 auto;
   padding-top: var(--header-height); /* tránh bị header che */
-  padding-bottom: 30px;              /* luôn hở 30 px tới footer */
+  padding-bottom: 30px;   
+  background-color: #fff;             /* luôn hở 30 px tới footer */
 }
 
 /* ----- Filter Bar (bên phải, cách header 30 px) ----- */
